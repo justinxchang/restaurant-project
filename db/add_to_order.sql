@@ -1,4 +1,9 @@
 INSERT INTO cart
-(name, price, quantity)
+(order_num, name, price, quantity)
 VALUES
-($1, $2, 1)
+($1, $2, $3, 1);
+
+UPDATE cart
+SET item_total = price*quantity
+
+Returning *;

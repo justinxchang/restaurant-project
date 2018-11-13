@@ -36,6 +36,7 @@ class AddForm extends Component {
 
                 Food Name:
                 <input type='text' onChange={(event) => this.setState({foodName: event.target.value})} />
+                {this.state.foodName}
                 <br />
                 Food Description:
                 <input type='text' onChange={(event) => this.setState({foodDescription: event.target.value})} />

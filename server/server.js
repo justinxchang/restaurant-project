@@ -4,11 +4,15 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const massive = require('massive')
 const ctrl = require('./controller')
+const stripe = require('stripe')('sk_test_yCU8TDpKm9MUg1hP3gPReAmp'); //should this be put in .env?
+ 
+// const customer = await stripe.customers.create({
+//   email: 'customer@example.com'
+// });
 
 const app = express();
 const {SERVER_PORT, CONNECTION_STRING, SECRET} = process.env
 
-// connect to DB
 massive(CONNECTION_STRING)
 .then(db => {
     app.set('db', db)
@@ -25,10 +29,13 @@ app.use(express.json())         //bodyparser
 // }))
 // app.use( express.static( __dirname + '../../public' ) );
 
-// // endpoints
 app.post('/api/createfood', ctrl.addToDB)
 app.get('/api/getfood', ctrl.getAllFood)
 app.post('/api/addToOrder', ctrl.addToOrder)
+app.get('/api/getFromCart', ctrl.getFromCart)
+// app.delete('/api/deleteItem/:id', ctrl.deleteItem)
+app.get('/api/cartToOrders', ctrl.cartToOrders)
+app.post('/api/charge', ctrl.charge)
 
 
 

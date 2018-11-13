@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Food from './Food'
 import axios from 'axios';
+import {addToCart, getFromCart} from '../ducks/reducer'
 
 
 class FoodMenu extends Component {
@@ -12,21 +13,20 @@ class FoodMenu extends Component {
         cart: []
     }
 
-    componentDidMount(){
-        axios.get('/api/getfood')
-        .then(res => {this.setState({
-            foodMenu: res.data
-        })})
-        console.log('foodMenu', this.state.foodMenu)
-    } 
+    async componentDidMount(){
+        let res = await axios.get('/api/getfood')
+        this.setState({foodMenu: res.data})
+        // let result = await axios.get('/api/getFromCart')
+        // this.props.getFromCart(result.data)
+        // console.log('foodMenu', this.state.foodMenu)  
+        // console.log('data from db', result.data)
     
+    }
+
     async addToOrder(foodObj){
         let res = await axios.post('/api/addToOrder', foodObj)
         let updatedCart = this.state.cart.push(foodObj)
-        console.log('cart', this.state.cart)
-        console.log('foodMenu', this.state.foodMenu)
-        // if(res.status === 200)
-        // alert('Added to order')
+        console.log(`Added ${foodObj.name} to order.`)
     } 
 
     render(){
@@ -37,6 +37,7 @@ class FoodMenu extends Component {
                     <h6>{food.description}</h6>
                     <h6>${food.price}</h6>
                     <button onClick={() => this.addToOrder(food)}>Add to Order</button>
+                    {/* {console.log('redux cart', this.props.cart)} */}
                 </div>
             )
         })
@@ -52,4 +53,14 @@ class FoodMenu extends Component {
     }
 }
 
-export default FoodMenu
+function mapStateToProps(state){
+    console.log('state', state)
+    return state
+}
+
+const dispatchToProps = {
+    addToCart,
+    getFromCart
+}
+
+export default connect(mapStateToProps, dispatchToProps)(FoodMenu)

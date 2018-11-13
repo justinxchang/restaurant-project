@@ -17,19 +17,29 @@ CREATE TABLE cart (
 ------
 
 CREATE TABLE cart (
-    item_id SERIAL PRIMARY KEY,
+    id serial PRIMARY KEY,
+    order_num integer,
     name VARCHAR(40),
     price DECIMAL,
-    quantity INTEGER
-)
+    quantity INTEGER,    
+    item_total DECIMAL
+);
+
+UPDATE cart
+SET item_total = price*quantity;
 
 CREATE TABLE orders (
-    item_id SERIAL PRIMARY KEY,
+    id serial PRIMARY KEY,
+    order_num integer,
     name VARCHAR(40),
     price DECIMAL,
-    quantity INTEGER
-    -- item_total DECIMAL,
-)
+    quantity INTEGER,
+    item_total DECIMAL
+);
+
+UPDATE orders
+SET item_total = price*quantity
+
 
 ALTER TABLE orders
 ADD COLUMN item_total DECIMAL
@@ -41,3 +51,7 @@ INSERT INTO cart
 (name, price, quantity)
 VALUES
 ('stuff', 5.0, 3)
+
+DELETE FROM cart
+
+DROP TABLE cart

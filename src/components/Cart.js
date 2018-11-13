@@ -1,41 +1,64 @@
 import React, {Component} from 'react'
 // import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import {addDrink} from '../ducks/reducer'
+import { addToCart, getFromCart} from '../ducks/reducer'
+import axios from 'axios';
 // import Drinks from './Drinks'
 
-
-
 class Cart extends Component {
-    
-    state = {
-        cart: [],
+
+    async componentDidMount(){
+        let result = await axios.get('/api/getFromCart')
+        this.props.getFromCart(result.data)    
     }
 
-    // function addDrink(id){
-    
-    checkOut(cart){
-        //move from cart db to order db
-            //
-        let completedOrder = this.state.cart
-        //clear cart db
+    async checkOut(cart){
+        let response = axios.get('/api/cartToOrders')
+        this.props.history.push('/cart')
     }
-    
+
     render(){
-        let viewCart = this.state.cart.map((item, i) => {
+        console.log('this is cart',this.props.cart)
+        let viewCart = this.props.cart.map((item, i) => {
             return (
-                {item}
+                <div key={i}>
+                    {/* <td>{item.name}</td>
+                    <td>${item.price}</td>
+                    <td>{item.quantity}</td>
+                    <td>${item.item_total}</td>
+                </div> */}
+
+
+                <br />
+                <br />
+                    <p>Name: {item.name}</p>              <p>Price: ${item.price}</p> 
+                    <p>Quantity: {item.quantity}</p>
+                    <p>Item Total: ${item.item_total}</p>
+                    <button>Edit</button>
+                    <button onClick={() => this.deleteItem(i)}>Delete</button>
+                </div>
             )
         })
         return (
             <div>
                 Cart
-                {viewCart}
-                <button onClick={() => this.checkOut(this.state.cart)}>Checkout</button>
+                {viewCart}  
+                <br />
+                <button onClick={() => this.checkOut()}>Checkout</button>
                 
             </div>
         )
     }
 }
 
-export default connect(null,)(Cart)
+function mapStateToProps(state){
+    console.log(state)
+    return state
+}
+
+const dispatchToProps = {
+    addToCart,
+    getFromCart
+}
+
+export default connect(mapStateToProps, dispatchToProps)(Cart)
