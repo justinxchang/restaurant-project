@@ -8,7 +8,8 @@ import axios from 'axios';
 class FoodMenu extends Component {
     
     state = {
-        foodMenu: []
+        foodMenu: [],
+        cart: []
     }
 
     componentDidMount(){
@@ -17,28 +18,25 @@ class FoodMenu extends Component {
             foodMenu: res.data
         })})
         console.log('foodMenu', this.state.foodMenu)
-    }
-
-    async addToOrder(id){
-        console.log('id', id)
-        console.log(this.state.foodMenu[id]) //nothing passes through
-        let res = await axios.post('/api/addToOrder', {
-            foodName: this.state.foodMenu[id].name,
-            foodPrice: this.state.foodMenu[id].price
-        })
-        if(res.status === 200)
-        alert('Added to order')
-    }
+    } 
+    
+    async addToOrder(foodObj){
+        let res = await axios.post('/api/addToOrder', foodObj)
+        let updatedCart = this.state.cart.push(foodObj)
+        console.log('cart', this.state.cart)
+        console.log('foodMenu', this.state.foodMenu)
+        // if(res.status === 200)
+        // alert('Added to order')
+    } 
 
     render(){
-        let foodList = this.state.foodMenu.map((food, i) => {
+        let foodList = this.state.foodMenu.map((food) => {
             return (
-                <div key={i}>
+                <div key={food.id}>
                     <h5>{food.name}</h5>
                     <h6>{food.description}</h6>
                     <h6>${food.price}</h6>
-                    <button onClick={() => this.addToOrder(i)}>Add to Order</button>
-                    
+                    <button onClick={() => this.addToOrder(food)}>Add to Order</button>
                 </div>
             )
         })

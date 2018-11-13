@@ -10,8 +10,11 @@ const {SERVER_PORT, CONNECTION_STRING, SECRET} = process.env
 
 // connect to DB
 massive(CONNECTION_STRING)
-.then(db => {app.set('db', db) 
-console.log('Connected to the db')})
+.then(db => {
+    app.set('db', db)
+    //app.listen can go here to (try this if you're having issues with the database not loading before componentDidMount does. this may cause additional side effects)  
+console.log('Connected to the db')
+})
 
 // // middleware
 app.use(express.json())         //bodyparser

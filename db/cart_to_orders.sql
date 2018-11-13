@@ -1,0 +1,2 @@
+INSERT INTO orders
+SELECT * FROM cart

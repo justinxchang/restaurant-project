@@ -16,9 +16,9 @@ module.exports = {
     },
     addToOrder: (req, res) => {
         let db = req.app.get('db')
-        let {foodName, foodPrice} = req.body
+        let {name, price} = req.body
         console.log('req body', req.body)
-        db.add_to_order([foodName, foodPrice])
+        db.add_to_order([name, price])
         .then((food) => {
             res.status(200).send(food)
         })
