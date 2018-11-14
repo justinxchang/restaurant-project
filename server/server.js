@@ -4,11 +4,6 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const massive = require('massive')
 const ctrl = require('./controller')
-const stripe = require('stripe')('sk_test_yCU8TDpKm9MUg1hP3gPReAmp'); //should this be put in .env?
- 
-// const customer = await stripe.customers.create({
-//   email: 'customer@example.com'
-// });
 
 const app = express();
 const {SERVER_PORT, CONNECTION_STRING, SECRET} = process.env
@@ -22,23 +17,22 @@ console.log('Connected to the db')
 
 // // middleware
 app.use(express.json())         //bodyparser
-// app.use(session({
-//     secret: SECRET,
-//     resave: false,
-//     saveUnitialized: false
-// }))
+app.use(session({
+    secret: SECRET,
+    resave: false,
+    saveUnitialized: false
+}))
 // app.use( express.static( __dirname + '../../public' ) );
 
-app.post('/api/createfood', ctrl.addToDB)
-app.get('/api/getfood', ctrl.getAllFood)
-app.post('/api/addToOrder', ctrl.addToOrder)
-app.get('/api/getFromCart', ctrl.getFromCart)
-// app.delete('/api/deleteItem/:id', ctrl.deleteItem)
-app.get('/api/cartToOrders', ctrl.cartToOrders)
-app.post('/api/charge', ctrl.charge)
+app.post('/createfood', ctrl.addToDB)
+app.get('/getfood', ctrl.getAllFood)
+app.post('/addToOrder', ctrl.addToOrder)
+app.get('/getFromCart', ctrl.getFromCart)
+app.delete('/deleteFromCart/:id', ctrl.deleteFromCart)
+app.put('/editQuantity/:id', ctrl.editQuantity)
+app.get('/cartToOrders', ctrl.cartToOrders)
+app.post('/payment', ctrl.chargeCard)
+app.get('/getOrders', ctrl.getOrders)
+app.post('/getTotal/order_num', ctrl.getTotal)
 
-
-
-
-
-app.listen(SERVER_PORT, () => console.log(`Server listening on port: ${SERVER_PORT}`)) 
+app.listen(SERVER_PORT, () => console.log(`Server listening on port: ${SERVER_PORT}`))  

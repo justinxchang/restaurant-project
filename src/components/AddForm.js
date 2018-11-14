@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import Drinks from './Drinks'
 
 
 class AddForm extends Component {
@@ -15,11 +14,12 @@ class AddForm extends Component {
         foodName: '',
         foodDescription: '',
         foodPrice: 0,
-        foodCategory: ''
+        foodCategory: '',
+        num: 0
     }
 
     addToDB(){
-        axios.post('/api/createfood', {
+        axios.post('/createfood', {
             foodName: this.state.foodName,
             foodDescription: this.state.foodDescription,
             foodPrice: this.state.foodPrice,
@@ -46,6 +46,10 @@ class AddForm extends Component {
                 <br />
                 Food Category:
                 <input type='text' onChange={(event) => this.setState({foodCategory: event.target.value})} />
+                <br />
+                Num Test:
+                <select onChange={(event) => this.setState({num: event.target.value})}>
+                    </select>  /> {this.state.num}
                 <br />
                 <button onClick={() => this.addToDB()}>Add to Database</button>
             </div>

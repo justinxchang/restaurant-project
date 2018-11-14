@@ -4,6 +4,7 @@ VALUES
 ($1, $2, $3, 1);
 
 UPDATE cart
-SET item_total = price*quantity
+SET item_total = price*quantity;
 
-Returning *;
+SELECT * FROM cart
+ 
