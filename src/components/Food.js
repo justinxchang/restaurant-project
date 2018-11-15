@@ -7,7 +7,11 @@ class Food extends Component {
     render(){
         return (
             <div>
-                Food
+                    <h5>{this.props.name}</h5>
+                    <h6>{this.props.description}</h6>
+                    <h6>${this.props.price}</h6>
+                    {console.log(this.props)}
+                    {/* <button onClick={() => this.addToOrder(this.props.food)}>Add to Order</button> */}
             </div>
         )
     }

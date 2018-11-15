@@ -16,6 +16,7 @@ module.exports = {
         .then((food) => {
             res.status(200).send(food)
         })
+        console.log(req.session)
     },
     addToOrder: (req, res) => {
         let db = req.app.get('db')
@@ -37,6 +38,12 @@ module.exports = {
             res.status(200).send(cart)
         })
         
+    },
+    getTotal: (req, res) => {
+        let db = req.app.get('db')
+        db.get_total()
+        .then((total) => res.status(200).send(total))
+        console.log('total', total[0].sum)
     },
     deleteFromCart: (req, res) => {
         let db = req.app.get('db')

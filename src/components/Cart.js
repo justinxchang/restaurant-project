@@ -10,30 +10,33 @@ class Cart extends Component {
 
     async componentDidMount(){
         let result = await axios.get('/getFromCart')
-        this.props.updateCart(result.data)      
+        this.props.updateCart(result.data)
+        this.getTotal()      
     }
 
-    async checkOut(cart){
-        let response = axios.get('/cartToOrders')
-        this.props.updateCart(response.data)      
+    async cartToOrders(cart){
+        let response = await axios.get('/cartToOrders')
+        this.props.updateCart(response.data)
     }
 
-    async getTotal(order_num){
-        let response = axios.post(`/getTotal/${order_num}`)
-        this.props.updateTotal(response.data)
+    async getTotal(){
+        let response = await axios.get(`/getTotal`)
+        console.log(response.data[0].sum)
+        let total = response.data[0].sum
+        this.props.updateTotal(total)
     }
 
     async deleteItem(id){
         let result = await axios.delete(`/deleteFromCart/${id}`)
-        this.props.updateCart(result.data)      
+        this.props.updateCart(result.data)
+        this.getTotal()      
     }
     
     async editQuantity(quantity, id){
         let result = await axios.put(`/editQuantity/${id}`, {quantity})
         this.props.updateCart(result.data)
         console.log(result.data)
-        console.log(result.data.order_num)
-        this.getTotal(result.data.order_num)
+        this.getTotal()
     }
 
     render(){
@@ -42,7 +45,7 @@ class Cart extends Component {
                 <div key={item.id}>
                 <br />
                 <br />
-                    <h6>Name: {item.name}</h6>              <h6>Price: ${item.price}</h6> 
+                    <h6>Name: {item.name}</h6>              <h6>Price: ${item.price} Quantity: {item.quantity}</h6> 
                     {/* <h6>Quantity: {item.quantity}</h6>
                     <h6>Item Total: ${item.item_total}</h6> */}
                     <select onChange={(event) => this.editQuantity(event.target.value, item.id)}>
@@ -52,7 +55,7 @@ class Cart extends Component {
                         <option value='4'>4</option>
                         <option value='5'>5</option>
                     </select>
-                    <button onClick={() => this.deleteItem(item.id)}>Delete</button>
+                    <button onClick={() => this.deleteItem(item.id)}>Remove</button>
                 </div>
             )
         })
@@ -61,8 +64,8 @@ class Cart extends Component {
                 Cart
                 {viewCart}  
                 <br />
-                Total: {this.props.total}
-                <button onClick={() => this.checkOut()}>Checkout</button>
+                Total: ${this.props.total}
+                <button onClick={() => this.cartToOrders()}>Checkout</button>
                 <br />
                 <Stripe />
 

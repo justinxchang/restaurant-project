@@ -47,9 +47,6 @@ class AddForm extends Component {
                 Food Category:
                 <input type='text' onChange={(event) => this.setState({foodCategory: event.target.value})} />
                 <br />
-                Num Test:
-                <select onChange={(event) => this.setState({num: event.target.value})}>
-                    </select>  /> {this.state.num}
                 <br />
                 <button onClick={() => this.addToDB()}>Add to Database</button>
             </div>

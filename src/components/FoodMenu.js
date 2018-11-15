@@ -18,10 +18,10 @@ class FoodMenu extends Component {
     } 
  
     render(){
-        console.log(this.props.menu)
         let foodList = this.props.menu.map((food) => {
             return (
                 <div key={food.id}>
+                    {/* <Food name={food.name} description={food.description} price={food.price} addToOrder={this.addToOrder()} /> */}
                     <h5>{food.name}</h5>
                     <h6>{food.description}</h6>
                     <h6>${food.price}</h6>
@@ -42,7 +42,6 @@ class FoodMenu extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('state', state)
     return state
 }
 
