@@ -6,7 +6,14 @@ const massive = require('massive')
 const ctrl = require('./controller')
 
 const app = express();
-const {SERVER_PORT, CONNECTION_STRING, SECRET} = process.env
+const {
+    SERVER_PORT,
+    CONNECTION_STRING,
+    SECRET,
+    REACT_APP_DOMAIN,
+    REACT_APP_CLIENT_ID,
+    CLIENT_SECRET
+    } = process.env
 
 massive(CONNECTION_STRING)
 .then(db => {
@@ -25,13 +32,14 @@ app.use(express.json())         //bodyparser
 // app.use( express.static( __dirname + '../../public' ) );
 
 
-app.post('/createfood', ctrl.addToDB)
+app.post('/createfood', ctrl.createFood)
+// app.post('/createfood', ctrl.addToDB)
 app.get('/getfood', ctrl.getAllFood)
 app.post('/addToOrder', ctrl.addToOrder)
 app.get('/getFromCart', ctrl.getFromCart)
 app.delete('/deleteFromCart/:id', ctrl.deleteFromCart)
 app.put('/editQuantity/:id', ctrl.editQuantity)
-app.get('/cartToOrders', ctrl.cartToOrders)
+// app.get('/cartToOrders', ctrl.cartToOrders)
 app.post('/payment', ctrl.chargeCard)
 app.get('/getOrders', ctrl.getOrders)
 app.get('/getTotal', ctrl.getTotal)

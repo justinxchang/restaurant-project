@@ -3,8 +3,8 @@ INSERT INTO cart
 VALUES
 ($1, $2, $3, 1);
 
-UPDATE cart
-SET item_total = price*quantity;
+-- UPDATE cart
+-- SET item_total = price*quantity;
 
 SELECT * FROM cart
  

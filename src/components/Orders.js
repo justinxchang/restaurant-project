@@ -8,17 +8,23 @@ import axios from 'axios'
 class Orders extends Component {
 
     async componentDidMount(){
-        let result = await axios.get('/api/getOrders')
+        let result = await axios.get('/getOrders')
         this.props.getFromOrders(result.data)    
+    }
+
+    completed(order){
+
     }
 
     render(){
         let orders = this.props.orders.map((order, i) => {
+            // if order_completed === tru
+            // onClick, change css className that toggles?
             return (
                 <div key={order.id}>
-                    <p>Name: {order.name}</p>              <p>Price: ${order.price}</p> 
-                    <p>Quantity: {order.quantity}</p>
-                    <p>Order Total: ${order.item_total}</p>
+
+                    Order Num: {order.order_num} <p>Name: {order.name}</p> 
+                    <button onClick={() => this.completed(order)}>Completed</button>            
                 </div>
             )
         })

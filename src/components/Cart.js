@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import { addToCart, updateCart, updateTotal} from '../ducks/reducer'
 import axios from 'axios';
@@ -30,7 +30,7 @@ class Cart extends Component {
         let result = await axios.delete(`/deleteFromCart/${id}`)
         this.props.updateCart(result.data)
         this.getTotal()      
-    }
+    } 
     
     async editQuantity(quantity, id){
         let result = await axios.put(`/editQuantity/${id}`, {quantity})
@@ -65,7 +65,7 @@ class Cart extends Component {
                 {viewCart}  
                 <br />
                 Total: ${this.props.total}
-                <button onClick={() => this.cartToOrders()}>Checkout</button>
+                {/* <button onClick={() => this.cartToOrders()}>Checkout</button> */}
                 <br />
                 <Stripe />
 

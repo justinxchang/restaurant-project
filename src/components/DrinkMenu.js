@@ -5,17 +5,17 @@ import Food from './Food'
 import axios from 'axios';
 import {addToCart, getFromCart, updateMenu} from '../ducks/reducer'
 
-class FoodMenu extends Component {
+class DrinkMenu extends Component {
     
     async componentDidMount(){
         let res = await axios.get('/getfood')
-        console.log('res', res)
         this.props.updateMenu(res.data)
     }
 
     async addToOrder(foodObj){
         let res = await axios.post('/addToOrder', foodObj)
         console.log(`Added ${foodObj.name} to order.`)
+        // console.log(`Cart []`, this.props.cart)
     } 
  
     render(){
@@ -33,7 +33,7 @@ class FoodMenu extends Component {
 
         return (
             <div>
-                <h2>Food Menu</h2>
+                <h2>Drink Menu</h2>
                 <div>
                     {foodList}
                 </div>
@@ -51,4 +51,4 @@ const dispatchToProps = {
     updateMenu
 }
 
-export default connect(mapStateToProps, dispatchToProps)(FoodMenu)
+export default connect(mapStateToProps, dispatchToProps)(DrinkMenu)
