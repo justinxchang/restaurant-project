@@ -2,8 +2,19 @@ CREATE TABLE food (
     id SERIAL PRIMARY KEY,
     name VARCHAR(40),
     description VARCHAR(300),
-    price INTEGER,
+    price DECIMAL,
     category VARCHAR(40)
+)
+
+CREATE TABLE drinks (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(40),
+    description VARCHAR(300),
+    price DECIMAL,
+    category VARCHAR(40),
+    sub_category VARCHAR(40),
+    ABV DECIMAL,
+    origin VARCHAR(40)
 )
 
 CREATE TABLE cart (
@@ -79,3 +90,9 @@ INSERT INTO orderlist
 (order_num, order_total)
 VALUES 
 (1, 34.50)
+
+ALTER TABLE food
+ADD COLUMN type VARCHAR(10)
+
+UPDATE food
+SET type = 'food'

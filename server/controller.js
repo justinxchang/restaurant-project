@@ -5,9 +5,17 @@ module.exports = {
     createFood: (req, res) => {
         let {foodName, foodDescription, foodPrice, foodCategory} = req.body
         let db = req.app.get('db')
-        db.add_food_item([foodName, foodDescription, foodPrice, foodCategory])
+        db.add_food_to_menu([foodName, foodDescription, foodPrice, foodCategory])
         .then((food) => {
             res.status(200).send(food)
+        })
+    }, 
+    createDrink: (req, res) => {
+        let {drinkName, drinkDescription, drinkPrice, drinkCategory, drinkSubcategory, drinkABV, drinkOrigin} = req.body
+        let db = req.app.get('db')
+        db.add_drink_item([drinkName, drinkDescription, drinkPrice, drinkCategory, drinkSubcategory, drinkABV, drinkOrigin])
+        .then((drink) => {
+            res.status(200).send(drink)
         })
     }, 
     getAllFood: (req, res) => {
@@ -17,32 +25,36 @@ module.exports = {
             res.status(200).send(food)
         })
     },
-    addToOrder: (req, res) => {
+    getAllDrinks: (req, res) => {
         let db = req.app.get('db')
-        let {name, price} = req.body
-        db.add_to_order([order_num, name, price])
+        db.get_all_drink_items()
+        .then((drink) => {
+            res.status(200).send(drink)
+        })
+    },
+    addToCart: (req, res) => {
+        let db = req.app.get('db')
+        let {name, price, type} = req.body
+        db.add_to_cart([order_num, name, price, type])
         .then((cart) => {
             res.status(200).send(cart)
         }) 
     },
+    async getFromCart (req, res) {
+        let db = req.app.get('db')
+        let response = await db.select_all_from_cart()
+        res.status(200).send(response)
+    },
     editQuantity: (req, res) => {
         let db = req.app.get('db')
-        let {id} = req.params
+        let {id} = req.params 
         console.log(req.body)
         let {quantity} = req.body
-        let num = parseInt(quantity)
+        let num = parseFloat(quantity)
         db.edit_quantity([id, num])
         .then((cart) => {
-            // db.get_total(order_id)
             res.status(200).send(cart) 
-        })
-        
-    },
-    getTotal: (req, res) => {
-        let db = req.app.get('db')
-        db.get_total()
-        .then((total) => res.status(200).send(total))
-        console.log('total', total[0].sum)
+        })        
     },
     deleteFromCart: (req, res) => {
         let db = req.app.get('db')
@@ -50,17 +62,11 @@ module.exports = {
         db.delete_from_cart(id)
         .then((cart) => res.status(200).send(cart))
     },
-    async getFromCart (req, res) {
+    getTotal: (req, res) => {
         let db = req.app.get('db')
-        let response = await db.select_all_from_cart()
-        res.status(200).send(response)
+        db.get_total()
+        .then(total => res.status(200).send(total))
     },
-    // async cartToOrders (req, res) {
-    //     let db = req.app.get('db')
-    //     let response = await db.cart_to_orders()
-    //     console.log('added to orders / cart cleared')
-    //     order_num++
-    // },
     chargeCard: (req, res) => {
         const charge = stripe.charges.create({
             amount: req.body.amount, // amount in cents, again
@@ -81,7 +87,6 @@ module.exports = {
                 //do Nodemailer here
             }              
         })
-        
         console.log('Card was charged')
     },
     async getOrders (req, res) {
@@ -90,10 +95,4 @@ module.exports = {
         res.status(200).send(response)
         console.log(response)
     },
-    async getTotal (req, res) {
-        let db = req.app.get('db')
-        let {order_num} = req.params
-        let response = await db.get_total(order_num)
-        res.status(200).send(response)
-    }
 }  

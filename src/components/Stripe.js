@@ -9,9 +9,9 @@ import {withRouter} from 'react-router-dom'
 class Stripe extends React.Component {
   
   onToken = (token) => {
-    let total = (parseInt(this.props.total) * 100)
+    let total = (parseFloat(this.props.total) * 100)
     token.card = void 0
-    axios.post('/payment', {token: token, amount: total}).then(res => {
+    axios.post('/chargeCard', {token: token, amount: total}).then(res => {
       console.log(`/payment hit`)
       this.props.history.push('/foodmenu')
       
@@ -23,7 +23,7 @@ class Stripe extends React.Component {
   }
  
   render() {
-    let total = (parseInt(this.props.total) * 100)
+    let total = (parseFloat(this.props.total) * 100)
     return (
       <StripeCheckout
         name="Stripe Checcout"

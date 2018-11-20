@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import { addToCart, updateCart, updateTotal} from '../ducks/reducer'
+import {updateCart, updateTotal} from '../ducks/reducer'
 import axios from 'axios';
 import Stripe from './Stripe'
 // import Drinks from './Drinks'
@@ -46,8 +46,6 @@ class Cart extends Component {
                 <br />
                 <br />
                     <h6>Name: {item.name}</h6>              <h6>Price: ${item.price} Quantity: {item.quantity}</h6> 
-                    {/* <h6>Quantity: {item.quantity}</h6>
-                    <h6>Item Total: ${item.item_total}</h6> */}
                     <select onChange={(event) => this.editQuantity(event.target.value, item.id)}>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
@@ -65,7 +63,6 @@ class Cart extends Component {
                 {viewCart}  
                 <br />
                 Total: ${this.props.total}
-                {/* <button onClick={() => this.cartToOrders()}>Checkout</button> */}
                 <br />
                 <Stripe />
 
@@ -80,7 +77,6 @@ function mapStateToProps(state){
 }
 
 const dispatchToProps = {
-    addToCart,
     updateCart,
     updateTotal
 }

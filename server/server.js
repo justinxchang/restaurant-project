@@ -32,16 +32,17 @@ app.use(express.json())         //bodyparser
 // app.use( express.static( __dirname + '../../public' ) );
 
 
-app.post('/createfood', ctrl.createFood)
-// app.post('/createfood', ctrl.addToDB)
-app.get('/getfood', ctrl.getAllFood)
-app.post('/addToOrder', ctrl.addToOrder)
+app.post('/createFood', ctrl.createFood)
+app.post('/createDrink', ctrl.createDrink)
+app.get('/getAllFood', ctrl.getAllFood)
+app.get('/getAllDrinks', ctrl.getAllDrinks)
+app.post('/addToCart', ctrl.addToCart)
 app.get('/getFromCart', ctrl.getFromCart)
 app.delete('/deleteFromCart/:id', ctrl.deleteFromCart)
 app.put('/editQuantity/:id', ctrl.editQuantity)
-// app.get('/cartToOrders', ctrl.cartToOrders)
-app.post('/payment', ctrl.chargeCard)
-app.get('/getOrders', ctrl.getOrders)
 app.get('/getTotal', ctrl.getTotal)
+app.post('/chargeCard', ctrl.chargeCard)
+app.get('/getOrders', ctrl.getOrders)
+// app.get('/cartToOrders', ctrl.cartToOrders)
 
 app.listen(SERVER_PORT, () => console.log(`Server listening on port: ${SERVER_PORT}`))  

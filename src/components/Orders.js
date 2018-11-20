@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import {addDrink, getFromOrders} from '../ducks/reducer'
+import {} from '../ducks/reducer'
 import axios from 'axios'
 
 
@@ -42,7 +42,7 @@ function mapStateToProps(state){
 }
 
 const dispatchToProps = {
-    getFromOrders
+    
 }
 
 

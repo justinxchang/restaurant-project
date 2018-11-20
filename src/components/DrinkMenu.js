@@ -3,30 +3,28 @@ import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Food from './Food'
 import axios from 'axios';
-import {addToCart, getFromCart, updateMenu} from '../ducks/reducer'
+import {updateDrinkMenu} from '../ducks/reducer'
 
 class DrinkMenu extends Component {
     
     async componentDidMount(){
-        let res = await axios.get('/getfood')
-        this.props.updateMenu(res.data)
+        let res = await axios.get('/getAllDrinks')
+        this.props.updateDrinkMenu(res.data)
     }
 
-    async addToOrder(foodObj){
-        let res = await axios.post('/addToOrder', foodObj)
-        console.log(`Added ${foodObj.name} to order.`)
-        // console.log(`Cart []`, this.props.cart)
+    async addToCart(drinkObj){
+        let res = await axios.post('/addToCart', drinkObj)
+        console.log(`Added ${drinkObj.name} to order.`)
     } 
  
     render(){
-        let foodList = this.props.menu.map((food) => {
+        let drinkList = this.props.drinkMenu.map((drink) => {
             return (
-                <div key={food.id}>
-                    {/* <Food name={food.name} description={food.description} price={food.price} addToOrder={this.addToOrder()} /> */}
-                    <h5>{food.name}</h5>
-                    <h6>{food.description}</h6>
-                    <h6>${food.price}</h6>
-                    <button onClick={() => this.addToOrder(food)}>Add to Order</button>
+                <div key={drink.id}>
+                    <h5>{drink.name}</h5>
+                    {/* <h6>{drink.description}</h6> */}
+                    <h6>${drink.price}</h6>
+                    <button onClick={() => this.addToCart(drink)}>Add to Order</button>
                 </div>
             )
         })
@@ -35,7 +33,7 @@ class DrinkMenu extends Component {
             <div>
                 <h2>Drink Menu</h2>
                 <div>
-                    {foodList}
+                    {drinkList}
                 </div>
             </div>
         )
@@ -47,8 +45,7 @@ function mapStateToProps(state){
 }
 
 const dispatchToProps = {
-    addToCart,
-    updateMenu
+    updateDrinkMenu
 }
 
 export default connect(mapStateToProps, dispatchToProps)(DrinkMenu)
