@@ -22,6 +22,8 @@ class AddForm extends Component {
         drinkSubcategory: '',
         drinkABV: '',
         drinkOrigin: '',
+        drinkWebsite: '',
+        drinkLogo: '',
         num: 0
     }
 
@@ -45,6 +47,8 @@ class AddForm extends Component {
             drinkSubcategory: this.state.drinkSubcategory,
             drinkABV: this.state.drinkABV,
             drinkOrigin: this.state.drinkOrigin,
+            drinkWebsite: this.state.drinkWebsite,
+            drinkLogo: this.state.drinkLogo,
         })
         .then(res => this.setState({drinks: res.data}))
         console.log(`Added ${this.state.drinkName} to database`)
@@ -81,24 +85,29 @@ class AddForm extends Component {
                     <input type='text' onChange={(event) => this.setState({drinkName: event.target.value})} />
                     {this.state.drinkName}
                     <br />
-                    Drink Description:
-                    <input type='text' onChange={(event) => this.setState({drinkDescription: event.target.value})} />
-                    <br />
-                    Drink Price:
-                    <input type='text' onChange={(event) => this.setState({drinkPrice: event.target.value})} />
-                    <br />
-                    Drink Category:
-                    <input type='text' onChange={(event) => this.setState({drinkCategory: event.target.value})} />
-                    <br />
-                    Drink Sub Category:
-                    <input type='text' onChange={(event) => this.setState({drinkSubcategory: event.target.value})} />
-                    <br />
                     Drink ABV:
                     <input type='text' onChange={(event) => this.setState({drinkABV: event.target.value})} />
                     <br />
                     Drink Origin:
                     <input type='text' onChange={(event) => this.setState({drinkOrigin: event.target.value})} />
                     <br />
+                    Drink Description:
+                    <input type='text' onChange={(event) => this.setState({drinkDescription: event.target.value})} />
+                    <br />
+                    Drink Sub Category:
+                    <input type='text' onChange={(event) => this.setState({drinkSubcategory: event.target.value})} />
+                    <br />
+                    Drink Category:
+                    <input type='text' onChange={(event) => this.setState({drinkCategory: event.target.value})} />
+                    <br />
+                    Drink Website:
+                    <input type='text' onChange={(event) => this.setState({drinkWebsite: event.target.value})} />
+                    <br />
+                    Drink Logo:
+                    <input type='text' onChange={(event) => this.setState({drinkLogo: event.target.value})} />
+                    <br />
+                    Drink Price:
+                    <input type='text' onChange={(event) => this.setState({drinkPrice: event.target.value})} />
                     <br />
                     <button onClick={() => this.createDrink()}>Add to Database</button>
                 </div>

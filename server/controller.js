@@ -11,9 +11,9 @@ module.exports = {
         })
     }, 
     createDrink: (req, res) => {
-        let {drinkName, drinkDescription, drinkPrice, drinkCategory, drinkSubcategory, drinkABV, drinkOrigin} = req.body
+        let {drinkName, drinkABV, drinkOrigin, drinkDescription, drinkSubcategory, drinkCategory, drinkWebsite, drinkLogo, drinkPrice} = req.body
         let db = req.app.get('db')
-        db.add_drink_item([drinkName, drinkDescription, drinkPrice, drinkCategory, drinkSubcategory, drinkABV, drinkOrigin])
+        db.add_drink_item([drinkName, drinkABV, drinkOrigin, drinkDescription, drinkSubcategory, drinkCategory, drinkWebsite, drinkLogo, drinkPrice])
         .then((drink) => {
             res.status(200).send(drink)
         })
@@ -42,7 +42,7 @@ module.exports = {
     },
     async getFromCart (req, res) {
         let db = req.app.get('db')
-        let response = await db.select_all_from_cart()
+        let response = await db.get_all_from_cart()
         res.status(200).send(response)
     },
     editQuantity: (req, res) => {
@@ -51,7 +51,7 @@ module.exports = {
         console.log(req.body)
         let {quantity} = req.body
         let num = parseFloat(quantity)
-        db.edit_quantity([id, num])
+        db.edit_cart_quantity([id, num])
         .then((cart) => {
             res.status(200).send(cart) 
         })        

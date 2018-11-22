@@ -9,12 +9,15 @@ CREATE TABLE food (
 CREATE TABLE drinks (
     id SERIAL PRIMARY KEY,
     name VARCHAR(40),
-    description VARCHAR(300),
-    price DECIMAL,
-    category VARCHAR(40),
-    sub_category VARCHAR(40),
     ABV DECIMAL,
-    origin VARCHAR(40)
+    origin VARCHAR(40),
+    description VARCHAR(5000),
+    sub_category VARCHAR(100),
+    category VARCHAR(100),
+    website VARCHAR(2000),
+    logo VARCHAR (1000),
+    price DECIMAL,
+    type VARCHAR(20)
 )
 
 CREATE TABLE cart (

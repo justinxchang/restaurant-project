@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import {updateCart, updateTotal} from '../ducks/reducer'
 import axios from 'axios';
 import Stripe from './Stripe'
-// import Drinks from './Drinks'
+import {Table, Grid, Row, Col, Glyphicon} from 'react-bootstrap'
+import './Cart.css'
 
 class Cart extends Component {
 
@@ -42,8 +43,19 @@ class Cart extends Component {
     render(){
         let viewCart = this.props.cart.map((item) => {
             return (
-                <div key={item.id}>
-                <br />
+                <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>${item.price}</td>
+                    <td><select onChange={(event) => this.editQuantity(event.target.value, item.id)} value={item.quantity}>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                    </select> <button onClick={() => this.deleteItem(item.id)}><Glyphicon glyph='trash'/></button></td>
+                </tr>
+
+                /* <br />
                 <br />
                     <h6>Name: {item.name}</h6>              <h6>Price: ${item.price} Quantity: {item.quantity}</h6> 
                     <select onChange={(event) => this.editQuantity(event.target.value, item.id)}>
@@ -53,18 +65,37 @@ class Cart extends Component {
                         <option value='4'>4</option>
                         <option value='5'>5</option>
                     </select>
-                    <button onClick={() => this.deleteItem(item.id)}>Remove</button>
-                </div>
+                    <button onClick={() => this.deleteItem(item.id)}>Remove</button> */
+
             )
         })
         return (
             <div>
-                Cart
-                {viewCart}  
-                <br />
-                Total: ${this.props.total}
-                <br />
-                <Stripe />
+                <Grid className="ggrid">
+                    <Row className="rrow">
+
+                    Cart
+                    <Table responsive bordered>
+                        <thead>
+                            <tr>
+                            <th className='cart-name'>Name</th>
+                            <th className='cart-price'>Price</th>
+                            <th className='cart-quantity'>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {viewCart}
+                        </tbody>
+                        </Table>
+                    
+                    <br />
+                    Total: ${this.props.total}
+                    <br />
+                    <Stripe />
+
+                    </Row>
+
+                </Grid>
 
 
             </div>

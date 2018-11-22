@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
+import {Navbar, Nav, NavItem} from 'react-bootstrap'
+import './Navbar.css'
 
-
-class Navbar extends Component {
+class NavbarComponent extends Component {
     render(){
         return (
-            <div>
-                <Link to='/'><button>Home</button></Link>
+            <div className="navbar">             
+                {/* <Link to='/'><button>Home</button></Link>
                 
                 <Link to='/drinkmenu'><button>Drinks</button></Link>
                 
@@ -19,13 +20,42 @@ class Navbar extends Component {
 
                 <Link to='/orders'><button>Orders</button></Link>
 
-                <Link to='/login'><button>Login</button></Link>
+                <Link to='/login'><button>Login</button></Link> */}
                 <div>
-
+                <Navbar inverse collapseOnSelect>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                        <Link to="/" href="/">Home</Link>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        <Nav>
+                        <NavItem eventKey={1} componentClass={Link} to="/drinkmenu" href="/drinkmenu">
+                            Drinks
+                        </NavItem>
+                        <NavItem eventKey={2} componentClass={Link} to="/foodmenu" href="/foodmenu">
+                            Food
+                        </NavItem>
+                        <NavItem eventKey={3} componentClass={Link} to="/cart" href="/cart">
+                            Cart
+                        </NavItem>
+                        
+                        </Nav>
+                        <Nav pullRight>
+                        <NavItem eventKey={1} href="#">
+                            Link Right
+                        </NavItem>
+                        <NavItem eventKey={2} href="#">
+                            Link Right
+                        </NavItem>
+                        </Nav>
+                    </Navbar.Collapse>
+                    </Navbar>    
                 </div>
             </div>
         )
     }
 }
 
-export default Navbar
+export default NavbarComponent

@@ -1,0 +1,19 @@
+/* img {
+    height: auto;
+    width: 90%;
+}
+
+.something {
+    display: flex;
+    flex-direction: center;
+} */
+
+.carousel {
+  width:900px;
+  height:500px;
+  margin: auto;
+}
+
+.carousel.item {
+    padding-bottom: 300px;
+}

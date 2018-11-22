@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Food from './Food'
 import axios from 'axios';
 import {getFromCart, updateFoodMenu} from '../ducks/reducer'
+import {Grid, Row, Col} from 'react-bootstrap'
 
 class FoodMenu extends Component {
     

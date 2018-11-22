@@ -1,0 +1,3 @@
+SELECT * FROM cart
+
+ORDER BY id
