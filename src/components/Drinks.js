@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import {Modal, Col, Image, Button} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 class Drinks extends Component {
     constructor(props) {
         super(props);
-        this.handleHide = this.handleHide.bind(this);
+        
         this.state = {
             show: false,
         }
+
+        this.handleHide = this.handleHide.bind(this);
     }
+
     handleHide() {
         this.setState({ show: false });
     }
+    
     render() {
         const { drink } = this.props;
         return (<div key={drink.id}>
@@ -21,9 +26,10 @@ class Drinks extends Component {
                 onClick={() => this.setState({ show: true })}
             >
                 <strong>More Info</strong>
-                <br />
-                <button onClick={() => this.props.addToCart(drink)}>Add to Order</button>
             </span>
+                <br /><br />
+                <button onClick={() => this.props.addToCart(drink)}>Add to Order</button>
+
             <Modal
                 show={this.state.show}
                 onHide={this.handleHide}
@@ -41,7 +47,8 @@ class Drinks extends Component {
                         <Image className="drink-logo" src={drink.logo} thumbnail />
                     </Col>
                     <p className="drink-description"><strong>Description</strong><br />{drink.description}</p>
-                    <p href={drink.website}>Website</p>
+                    <br /><br />
+                    <a href={drink.website}>Website</a>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.handleHide}>Close</Button>
