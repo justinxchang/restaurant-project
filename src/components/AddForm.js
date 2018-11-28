@@ -12,6 +12,7 @@ class AddForm extends Component {
         foodName: '',
         foodDescription: '',
         foodPrice: 0,
+        foodImage: '',
         foodCategory: '',
         drinkMenu: [],
         drinks: {},
@@ -32,6 +33,7 @@ class AddForm extends Component {
             foodName: this.state.foodName,
             foodDescription: this.state.foodDescription,
             foodPrice: this.state.foodPrice,
+            foodImage: this.state.foodImage,
             foodCategory: this.state.foodCategory
         })
         .then(res => this.setState({foods: res.data}))
@@ -64,13 +66,15 @@ class AddForm extends Component {
 
                     Food Name:
                     <input type='text' onChange={(event) => this.setState({foodName: event.target.value})} />
-                    {this.state.foodName}
                     <br />
                     Food Description:
                     <input type='text' onChange={(event) => this.setState({foodDescription: event.target.value})} />
                     <br />
                     Food Price:
                     <input type='text' onChange={(event) => this.setState({foodPrice: event.target.value})} />
+                    <br />
+                    Food Image:
+                    <input type='text' onChange={(event) => this.setState({foodImage: event.target.value})} />
                     <br />
                     Food Category:
                     <input type='text' onChange={(event) => this.setState({foodCategory: event.target.value})} />
@@ -83,7 +87,6 @@ class AddForm extends Component {
                 <div>
                     Drink Name:
                     <input type='text' onChange={(event) => this.setState({drinkName: event.target.value})} />
-                    {this.state.drinkName}
                     <br />
                     Drink ABV:
                     <input type='text' onChange={(event) => this.setState({drinkABV: event.target.value})} />

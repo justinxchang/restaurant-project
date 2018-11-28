@@ -3,7 +3,9 @@ CREATE TABLE food (
     name VARCHAR(40),
     description VARCHAR(300),
     price DECIMAL,
-    category VARCHAR(40)
+    image VARCHAR(500),
+    category VARCHAR(40),
+    type VARCHAR(20)
 )
 
 CREATE TABLE drinks (

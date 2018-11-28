@@ -45,7 +45,7 @@ class Cart extends Component {
             return (
                 <tr key={item.id}>
                     <td>{item.name}</td>
-                    <td>${item.price}</td>
+                    <td className='cart-price'>${item.price}</td>
                     <td><select onChange={(event) => this.editQuantity(event.target.value, item.id)} value={item.quantity}>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
@@ -54,33 +54,20 @@ class Cart extends Component {
                         <option value='5'>5</option>
                     </select> <button onClick={() => this.deleteItem(item.id)}><Glyphicon glyph='trash'/></button></td>
                 </tr>
-
-                /* <br />
-                <br />
-                    <h6>Name: {item.name}</h6>              <h6>Price: ${item.price} Quantity: {item.quantity}</h6> 
-                    <select onChange={(event) => this.editQuantity(event.target.value, item.id)}>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                    </select>
-                    <button onClick={() => this.deleteItem(item.id)}>Remove</button> */
-
             )
         })
         return (
             <div>
-                <Grid className="ggrid">
+                <Grid>
                     <Row className="rrow">
 
                     Cart
                     <Table responsive bordered>
                         <thead>
                             <tr>
-                            <th className='cart-name'>Name</th>
-                            <th className='cart-price'>Price</th>
-                            <th className='cart-quantity'>Quantity</th>
+                            <th className='cart-name'>NAME</th>
+                            <th className='cart-price'>PRICE</th>
+                            <th className='cart-quantity'>QUANTITY</th>
                             </tr>
                         </thead>
                         <tbody>

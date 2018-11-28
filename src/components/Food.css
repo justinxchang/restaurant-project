@@ -1,0 +1,14 @@
+.food-image {
+    width: 50%;
+}
+
+.food-menu { 
+    width: 350px;
+    display: flex;
+}
+
+.container2 {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}

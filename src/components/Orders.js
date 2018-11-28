@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
-import {} from '../ducks/reducer'
+import {updateOrders} from '../ducks/reducer'
 import axios from 'axios'
 
 
@@ -9,7 +9,7 @@ class Orders extends Component {
 
     async componentDidMount(){
         let result = await axios.get('/getOrders')
-        this.props.getFromOrders(result.data)    
+        this.props.updateOrders(result.data)    
     }
 
     completed(order){
@@ -42,7 +42,7 @@ function mapStateToProps(state){
 }
 
 const dispatchToProps = {
-    
+    updateOrders
 }
 
 

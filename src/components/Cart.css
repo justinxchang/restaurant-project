@@ -5,12 +5,13 @@ tr {
 }
 
 .cart-name {
-    width: 85%;
+    width: 80%;
 }
 
-.ggrid {
-    background: pink;
+.cart-price {
+    text-align: right;
 }
+
 
 .rrow {
     background: lightgray;

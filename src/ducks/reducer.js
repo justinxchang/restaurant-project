@@ -11,6 +11,7 @@ const UPDATE_FOOD_MENU = "UPDATE_FOOD_MENU"
 const UPDATE_DRINK_MENU = "UPDATE_DRINK_MENU"
 const UPDATE_CART = "UPDATE_CART"
 const UPDATE_TOTAL = "UPDATE_TOTAL"
+const UPDATE_ORDERS = "UPDATE_ORDERS"
 
 export default function (state = initailState, action) {
     switch (action.type) {
@@ -22,6 +23,8 @@ export default function (state = initailState, action) {
             return { ...state, cart: action.payload }
         case UPDATE_TOTAL:
             return { ...state, total: action.payload }
+        case UPDATE_ORDERS:
+            return { ...state, orders: action.payload }
         default:
             return state
     }
@@ -46,10 +49,18 @@ export function updateCart(cart){
         payload: cart
     }
 }
+
 export function updateTotal(total){
     return {
         type: UPDATE_TOTAL,
         payload: total
+    }
+}
+
+export function updateOrders(orders){
+    return {
+        type: UPDATE_ORDERS,
+        payload: orders
     }
 }
 

@@ -1,17 +1,24 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux'
-
+import {connect} from 'react-redux';
+import {ListGroupItem, Image} from 'react-bootstrap'
+import './Food.css'
 
 class Food extends Component {
+    constructor(props) {
+        super(props)
+    }
+
     render(){
-        return (
-            <div>
-                    <h5>{this.props.name}</h5>
-                    <h6>{this.props.description}</h6>
-                    <h6>${this.props.price}</h6>
-                    {console.log(this.props)}
-                    {/* <button onClick={() => this.addToOrder(this.props.food)}>Add to Order</button> */}
+        const {food} = this.props
+        return (<div className='food-menu' key={food.id}>
+            <ListGroupItem  header={food.name}>
+                    <div>${food.price} | {food.description}</div>
+                    <Image className="food-image" src={food.image} thumbnail responsive/>
+                    <br />
+                    <button onClick={() => this.props.addToCart(food)}>Add to Order</button>
+
+            </ListGroupItem>             
             </div>
         )
     }

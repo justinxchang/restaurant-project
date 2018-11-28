@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import Food from './Food'
 import axios from 'axios';
 import {getFromCart, updateFoodMenu} from '../ducks/reducer'
-import {Grid, Row, Col} from 'react-bootstrap'
+import {Grid, Row, Col, ListGroup, Alert} from 'react-bootstrap'
+import './Food.css'
 
 class FoodMenu extends Component {
     
@@ -19,24 +20,27 @@ class FoodMenu extends Component {
     } 
  
     render(){
-        let foodList = this.props.foodMenu.map((food) => {
-            return (
-                <div key={food.id}>
-                    <h5>{food.name}</h5>
-                    <h6>{food.description}</h6>
-                    <h6>${food.price}</h6>                 
-                    <button onClick={() => this.addToCart(food)}>Add to Order</button>
-                </div>
-            )
-        })
+        //.filter by category
+        let foodList = this.props.foodMenu.map((food) => (
+            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
+
+        ))
+
 
         return (
-            <div>
-                <h2>Food Menu</h2>
-                <div>
-                    {foodList}
-                </div>
-            </div>
+            <Grid>
+                <Row>
+                    
+                    <h2>Food Menu</h2>
+
+                            <div className='container2'>
+                                {foodList}
+                            </div>
+
+
+                </Row>
+
+            </Grid>
         )
     }
 }

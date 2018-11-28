@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import Food from './Food'
 import axios from 'axios';
 import {updateDrinkMenu} from '../ducks/reducer'
-import {Button, Modal, Col, Image} from 'react-bootstrap'
+import {Grid, Row, Button, Modal, Col, Image, ListGroup} from 'react-bootstrap'
 import './DrinkMenu.css'
 import Drinks from './Drinks'
 
@@ -26,12 +26,19 @@ class DrinkMenu extends Component {
         ));
             
         return (
-            <div>
-                <h2>Drink Menu</h2>
-                <div>
-                    {drinkList}
-                </div>
-            </div>
+            <Grid>
+                <Row>
+
+                    <h2>Drink Menu</h2>
+                    <ListGroup>
+                        <div>
+                            {drinkList}
+                        </div>
+
+                    </ListGroup>
+                </Row>
+
+            </Grid>
         )
     }
 }

@@ -3,9 +3,9 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 module.exports = { 
     createFood: (req, res) => {
-        let {foodName, foodDescription, foodPrice, foodCategory} = req.body
+        let {foodName, foodDescription, foodPrice, foodImage, foodCategory} = req.body
         let db = req.app.get('db')
-        db.add_food_to_menu([foodName, foodDescription, foodPrice, foodCategory])
+        db.add_food_to_menu([foodName, foodDescription, foodPrice, foodImage, foodCategory])
         .then((food) => {
             res.status(200).send(food)
         })
