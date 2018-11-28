@@ -101,3 +101,22 @@ ADD COLUMN type VARCHAR(10)
 
 UPDATE food
 SET type = 'food'
+
+
+CREATE TABLE customer (
+    cust_id serial primary key,
+    cust_name VARCHAR(50),
+    cust_email VARCHAR(180),
+    cust_hash text,
+    points integer
+)
+
+SELECT
+ name,
+ SUM (quantity) as QUANTITY
+FROM
+ orders
+GROUP BY
+ name
+ORDER BY quantity DESC
+

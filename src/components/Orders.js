@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {updateOrders} from '../ducks/reducer'
+import {Table, Grid, Row, Col, Glyphicon} from 'react-bootstrap'
 import axios from 'axios'
 
 
@@ -18,20 +19,37 @@ class Orders extends Component {
 
     render(){
         let orders = this.props.orders.map((order, i) => {
-            // if order_completed === tru
-            // onClick, change css className that toggles?
-            return (
-                <div key={order.id}>
 
-                    Order Num: {order.order_num} <p>Name: {order.name}</p> 
-                    <button onClick={() => this.completed(order)}>Completed</button>            
-                </div>
+            return (
+                <tr key={order.id}>
+                    <td>{order.order_num}</td>
+                    <td>{order.name}</td>
+                    <td>{order.quantity}</td>
+                    <td><button>Mark Completed</button></td>
+                </tr>
             )
         })
         return (
             <div>
-                {orders}
-                Orders
+            <Grid>
+                <Row className="rrow">
+                ORDERS
+                <Table responsive bordered>
+                    <thead>
+                        <tr>
+                        <th>ORDER #</th>
+                        <th>ITEM</th>
+                        <th>QUANTITY</th>
+                        <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orders}
+                    </tbody>
+                    </Table>              
+                </Row>
+
+            </Grid>
             </div>
         )
     }

@@ -12,13 +12,14 @@ class Food extends Component {
     render(){
         const {food} = this.props
         return (<div className='food-menu' key={food.id}>
-            <ListGroupItem  header={food.name}>
+            <div className="food-item" header={food.name}>
+                    <div><strong>{food.name}</strong></div>
                     <div>${food.price} | {food.description}</div>
                     <Image className="food-image" src={food.image} thumbnail responsive/>
                     <br />
                     <button onClick={() => this.props.addToCart(food)}>Add to Order</button>
 
-            </ListGroupItem>             
+            </div>             
             </div>
         )
     }

@@ -24,12 +24,12 @@ console.log('Connected to the db')
 
 // // middleware
 app.use(express.json())         //bodyparser
-// app.use(session({
-//     secret: SECRET,
-//     resave: false,
-//     saveUnitialized: false
-// }))
-// app.use( express.static( __dirname + '../../public' ) );
+app.use(session({
+    secret: SECRET,
+    resave: false,
+    saveUnitialized: false
+}))
+app.use( express.static( __dirname + '../../public' ) );
 
 
 app.post('/createFood', ctrl.createFood)
@@ -44,5 +44,12 @@ app.get('/getTotal', ctrl.getTotal)
 app.post('/chargeCard', ctrl.chargeCard)
 app.get('/getOrders', ctrl.getOrders)
 // app.get('/cartToOrders', ctrl.cartToOrders)
+
+app.get('/getOrderQuantities', ctrl.getOrderQuantities)
+
+app.post('/auth/signup', ctrl.signup)
+app.post('/auth/login', ctrl.login)
+app.get('/api/user-data', ctrl.userData)
+app.get('/auth/logout', ctrl.logout)
 
 app.listen(SERVER_PORT, () => console.log(`Server listening on port: ${SERVER_PORT}`))  

@@ -1,5 +1,5 @@
 .food-image {
-    width: 50%;
+    width: 75%;
 }
 
 .food-menu { 
@@ -11,4 +11,10 @@
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
+}
+
+.food-item {
+    border: 1px solid lightgray;
+    margin: 5px;
+    border-radius: 5px;
 }
