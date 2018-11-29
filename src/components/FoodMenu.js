@@ -20,7 +20,6 @@ class FoodMenu extends Component {
     } 
  
     render(){
-        //.filter by category
         let foodList = this.props.foodMenu.map((food) => (
             <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
         ))
