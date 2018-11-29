@@ -86,7 +86,7 @@ module.exports = {
                 console.log(charge)
                 return res.status(200).send(charge);
                 //do Nodemailer here
-            }              
+            }               
         })
         console.log('Card was charged')
     },
@@ -160,6 +160,6 @@ module.exports = {
     }, 
     logout(req, res) {
         req.session.destroy()
-        res.redirect('http://localhost:3000')  //since we have an <a> tag in Private.js, we can res.redirect
+        res.redirect(process.env.LOGOUT_REDIRECT)  //since we have an <a> tag in Private.js, we can res.redirect
     }
 }  

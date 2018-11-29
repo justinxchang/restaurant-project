@@ -9,7 +9,7 @@ import {withRouter} from 'react-router-dom'
 class Stripe extends React.Component {
   
   onToken = (token) => {
-    let total = (parseFloat(this.props.total) * 100)
+    let total = Math.round(parseFloat(this.props.total) * 100)
     token.card = void 0
     axios.post('/chargeCard', {token: token, amount: total}).then(res => {
       console.log(`/payment hit`)

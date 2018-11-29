@@ -29,8 +29,7 @@ app.use(session({
     resave: false,
     saveUnitialized: false
 }))
-app.use( express.static( __dirname + '../../public' ) );
-
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.post('/createFood', ctrl.createFood)
 app.post('/createDrink', ctrl.createDrink)

@@ -6,4 +6,5 @@ FROM
 GROUP BY
  name
 ORDER BY quantity DESC
+LIMIT 10
 

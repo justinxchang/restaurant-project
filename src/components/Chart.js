@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Bar, Line, Pie, Doughnut} from 'react-chartjs-2';
+import {Bar, Line, Pie, Doughnut, Radar} from 'react-chartjs-2';
 import axios from 'axios';
 
 class Chart extends Component{
@@ -11,20 +11,11 @@ class Chart extends Component{
     }
   }
 
-//   static defaultProps = {
-//     displayTitle:true,
-//     displayLegend: true,
-//     legendPosition:'right',
-//     location:'City'
-//   }
-
   componentDidMount(){
       axios.get('/getOrderQuantities')
       .then(res => this.setState({quantities: res.data}))
-      console.log(this.state.quantities)
   }
 
-  
   render(){
     function getRandomColor() {
         let letters = '0123456789ABCDEF'.split('');
@@ -52,7 +43,7 @@ class Chart extends Component{
       <div className="chart">
         <h1>Most Popular Items</h1>
 
-        <Pie
+        <Bar
           data={formattedData}
           options={{
             title:{
