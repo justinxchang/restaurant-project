@@ -1,6 +1,5 @@
 
 export const sortByCategory = (dataArray) => {
-    console.log('sorting')
     let sortedByCategory = {}
     dataArray.forEach(item => {
         if (sortedByCategory[item.category]) {

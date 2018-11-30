@@ -1,26 +1,42 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux'
-import { updateCart} from '../ducks/reducer'
+import { updateCart, updateUser} from '../ducks/reducer'
 
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
 class Stripe extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.addPoints = this.addPoints.bind(this)
+  }
   
+  addPoints(){
+    let points = Math.round(parseFloat(this.props.total) * 100)
+    let id = this.props.user.id;
+    console.log('points', points)
+    if(this.props.user.id) {
+      axios.post(`/addPoints/${id}`, {points})
+      .then(() => console.log(`Added ${points} points to ${id}'s account`))
+    }
+    this.props.updateUser()
+  }
+
   onToken = (token) => {
     let total = Math.round(parseFloat(this.props.total) * 100)
     token.card = void 0
+    //add points
+    this.addPoints()
     axios.post('/chargeCard', {token: token, amount: total}).then(res => {
       console.log(`/payment hit`)
       this.props.history.push('/foodmenu')
       
-    }).catch(err => console.log(err))
-    //     axios.get('/cartToOrders').then(res => {
-    //       console.log(`how come this doesn't console log`)
-    // }).catch(err => console.log(err))
-    
+    }).catch(err => console.log('replace with err'))    
   }
+
+
  
   render() {
     let total = (parseFloat(this.props.total) * 100)
@@ -41,7 +57,8 @@ function mapStateToProps(state){
 }
 
 const dispatchToProps = {
-  updateCart
+  updateCart,
+  updateUser
 }
 
 const ConnectedStripe = connect(mapStateToProps, dispatchToProps)(Stripe)

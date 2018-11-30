@@ -7,11 +7,11 @@
     display: flex;
 }
 
-.container2 {
+/* .container2 {
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
-}
+} */
 
 .food-item {
     border: 1px solid lightgray;
@@ -33,17 +33,27 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-/* * {
+.container {
+    background: white;
+} 
+
+.App {
     background: brown;
 }
 
+ul.nav.nav-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+/* 
 .navbar  {
     background: black;
 }
 
 .navbar-inverse {
-    background: black;
-}
-.container {
     background: black;
 } */

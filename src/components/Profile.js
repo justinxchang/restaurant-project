@@ -3,28 +3,24 @@ import axios from 'axios'
 import {updateUser} from '../ducks/reducer'
 import {connect} from 'react-redux'
 
-class Private extends Component {
+class Profile extends Component {
 
     async componentDidMount () {
         let res = await axios.get('/api/user-data');
         console.log(res)
         this.props.updateUser(res.data)
+        console.log("user info", this.props.user)
     }
 
     render(){
         return (
-            // let {user} = this.props
             <div>
-                <h1>Account Information</h1>
-                <hr/><hr/><hr/>
+                <h1>Rewards Member Info</h1>
                 {
                     this.props.user.email ? (
                         <div>
-                            <p>Account Holder: Justin Chang</p>
-                            <p>Account Number: 124321453451</p>
-                            <p>Account Email: {this.props.user.email}</p>
-                            <p>Balance: {Math.floor((Math.random() + 1) * 100)}</p>
-                        </div>
+                            <p>Email: {this.props.user.email}</p>
+                            <p>Points: {this.props.user.points}</p>                        </div>
                     ) : <p>Please Log In</p>
                 }
                     <a href={process.env.REACT_APP_LOGOUT}>                           
@@ -47,4 +43,4 @@ function mapStateToProps(state){
 // this makes everything in the redux state available to be used as props
 
 
-export default connect(mapStateToProps, {updateUser: updateUser}) (Private)
+export default connect(mapStateToProps, {updateUser: updateUser}) (Profile)

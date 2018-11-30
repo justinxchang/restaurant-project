@@ -8,7 +8,7 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import Orders from './components/Orders'
 import Login from './components/Login'
-import Private from './components/Private'
+import Profile from './components/Profile'
 import Chart from './components/Chart'
 
 export default (
@@ -21,7 +21,7 @@ export default (
         <Route component={Checkout} path='/checkout'/>
         <Route component={Orders} path='/orders'/>
         <Route component={Login} path='/login'/>
-        <Route component={Private} path='/private'/>
+        <Route component={Profile} path='/profile'/>
         <Route component={Chart} path='/chart'/>
     </Switch>
 )

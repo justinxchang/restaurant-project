@@ -1,4 +1,6 @@
-
+.container {
+    background: transparent;
+}
 
 tr {
     text-align: left;
@@ -13,8 +15,9 @@ tr {
 }
 
 
-.rrow {
+.row {
     background: lightgray;
+    border-radius: 20px;
 }
 
 * {

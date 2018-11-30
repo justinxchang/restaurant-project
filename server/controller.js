@@ -35,8 +35,9 @@ module.exports = {
     },
     addToCart: (req, res) => {
         let db = req.app.get('db')
-        let {name, price, type} = req.body
-        db.add_to_cart([order_num, name, price, type])
+        console.log(req.body)
+        let {name, price, type, member_id} = req.body
+        db.add_to_cart([order_num, name, price, type, member_id])
         .then((cart) => {
             res.status(200).send(cart)
         }) 
@@ -70,7 +71,7 @@ module.exports = {
     },
     chargeCard: (req, res) => {
         const charge = stripe.charges.create({
-            amount: req.body.amount, // amount in cents, again
+            amount: req.body.amount,
             currency: 'usd',
             source: req.body.token.id,
             description: 'Test charge from Justin'
@@ -82,8 +83,6 @@ module.exports = {
                 let db = req.app.get('db')
                 let response = await db.cart_to_orders()
                 console.log('added to orders / cart cleared')
-                order_num++
-                console.log(charge)
                 return res.status(200).send(charge);
                 //do Nodemailer here
             }               
@@ -123,8 +122,8 @@ module.exports = {
         //whatever you send will become res.data, if you add a message property (or whatever), you can accesss it with res.data.message
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(password, salt)
-        let createdUser = await db.create_customer([email, hash, name])
-        req.session.user = {email: createdUser[0].cust_email}
+        let createdUser = await db.create_member([email, hash, name])
+        req.session.user = {email: createdUser[0].member_email}
         res.status(200).send({message: 'Logged In'})  
     },
     async login(req, res){ // ES6 thing, don't necessarily need the colon after signup:
@@ -140,9 +139,13 @@ module.exports = {
         let foundUser = await db.find_user([email])
         if(foundUser[0]) {
             // compareSync returns either true or false
-            let result = bcrypt.compareSync(password, foundUser[0].cust_hash)
+            let result = bcrypt.compareSync(password, foundUser[0].member_hash)
             if(result){
-                req.session.user = {email: foundUser[0].cust_email}
+                req.session.user = {
+                    email: foundUser[0].member_email, 
+                    id: foundUser[0].member_id, 
+                    points: foundUser[0].points
+                }
                 res.status(200).send({message: 'Logged In'})
             } else {
                 res.status(401).send({message: `Incorrect password.`})
@@ -161,5 +164,15 @@ module.exports = {
     logout(req, res) {
         req.session.destroy()
         res.redirect(process.env.LOGOUT_REDIRECT)  //since we have an <a> tag in Private.js, we can res.redirect
+    },
+    addPoints(req, res) {
+        let db = req.app.get('db')
+        let {id} = req.params 
+        let points = req.body.points
+        console.log('points', points)
+        db.add_points([id, points])
+        .then((response) => {
+            res.status(200).send(response) 
+        })        
     }
 }  

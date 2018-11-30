@@ -32,26 +32,20 @@ CREATE TABLE cart (
 
 ------
 
-CREATE TABLE cart (
-    id serial PRIMARY KEY,
-    order_num integer,
-    name VARCHAR(40),
-    price DECIMAL,
-    quantity INTEGER,    
-    item_total DECIMAL
-);
-
-UPDATE cart
-SET item_total = price*quantity;
-
 CREATE TABLE orders (
     id serial PRIMARY KEY,
     order_num integer,
     name VARCHAR(40),
     price DECIMAL,
     quantity INTEGER,
-    item_total DECIMAL
+    type VARCHAR(20),    
+    member_id DECIMAL
 );
+
+
+
+UPDATE cart
+SET item_total = price*quantity;
 
 UPDATE orders
 SET item_total = price*quantity
@@ -70,7 +64,7 @@ VALUES
 DELETE FROM cart
 
 DROP TABLE cart
-
+ 
 INSERT INTO cart
 (order_num, name, price, quantity
 VALUES
@@ -103,12 +97,13 @@ UPDATE food
 SET type = 'food'
 
 
-CREATE TABLE customer (
-    cust_id serial primary key,
-    cust_name VARCHAR(50),
-    cust_email VARCHAR(180),
-    cust_hash text,
-    points integer
+CREATE TABLE member (
+    member_id serial primary key,
+    member_name VARCHAR(50),
+    member_email VARCHAR(180),
+    member_hash text,
+    points integer DEFAULT 0,
+    admin boolean
 )
 
 SELECT

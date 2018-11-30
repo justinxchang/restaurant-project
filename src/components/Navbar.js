@@ -43,14 +43,20 @@ class NavbarComponent extends Component {
                         
                         </Nav>
                         <Nav pullRight>
-                        <NavItem eventKey={4} componentClass={Link} to='/addform' href="/addform">
+                        <NavItem eventKey={5} componentClass={Link} to='/addform' href="/addform">
                             Add Form
                         </NavItem>
-                        <NavItem eventKey={5} componentClass={Link} to='/orders' href="/orders">
+                        <NavItem eventKey={6} componentClass={Link} to='/orders' href="/orders">
                             Orders
                         </NavItem>
-                        <NavItem eventKey={6} componentClass={Link} to='/chart' href="/chart">
+                        <NavItem eventKey={7} componentClass={Link} to='/chart' href="/chart">
                             Chart
+                        </NavItem>
+                        <NavItem eventKey={4} componentClass={Link} to='/login' href="/login">
+                            Login
+                        </NavItem>
+                        <NavItem eventKey={8} componentClass={Link} to='/profile' href="/profile">
+                            Profile
                         </NavItem>
                         </Nav>
                     </Navbar.Collapse>

@@ -34,7 +34,7 @@ class Login extends Component {
       console.log(res)
       //checking to see if we successfully logged in
       if(res.data.message === 'Logged In'){
-          this.props.history.push('/private') // redirects us to /private 
+          this.props.history.push('/profile') // redirects us to /profile 
           // history is like an array of where you've been, you'll always be on the last spot in the array, so if you push to the end, it'll redirect you to that page?
       } else {
           alert(res.data.message) 
@@ -52,7 +52,7 @@ class Login extends Component {
       })
       console.log(res)
       if(res.data.message === 'Logged In'){
-          this.props.history.push('/private')
+          this.props.history.push('/profile')
       } else {
           alert(res.data.message)
       }

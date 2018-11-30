@@ -44,7 +44,7 @@ class Orders extends Component {
             <button>Kitchen</button>
             <button>Bar</button>
             <Grid>
-                <Row className="rrow">
+                <Row className="row">
                 ORDERS
                 <Table responsive bordered>
                     <thead>

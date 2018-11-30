@@ -1,2 +1,2 @@
-SELECT * FROM customer
-WHERE cust_email = $1;
+SELECT * FROM member
+WHERE member_email = $1;

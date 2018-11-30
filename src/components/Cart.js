@@ -59,7 +59,7 @@ class Cart extends Component {
         return (
             <div>
                 <Grid>
-                    <Row className="rrow">
+                    <Row className="row">
 
                     Cart
                     <Table responsive bordered>
