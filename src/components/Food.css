@@ -19,6 +19,20 @@
     border-radius: 5px;
 }
 
+/* .foodMenuTabs {
+    align-items: center;
+} */
+
+.item-name {
+    background: grey;
+}
+
+.testdiv {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 /* * {
     background: brown;
 }

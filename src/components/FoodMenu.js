@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import Food from './Food'
 import axios from 'axios';
 import {getFromCart, updateFoodMenu} from '../ducks/reducer'
-import {Grid, Row, Col, ListGroup, Alert, Image} from 'react-bootstrap'
+import {Grid, Row, Col, ListGroup, Alert, Image, Tabs, Tab} from 'react-bootstrap'
 import './Food.css'
+import {sortByCategory} from './sorter';
 
 class FoodMenu extends Component {
     
@@ -24,89 +25,61 @@ class FoodMenu extends Component {
             <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
         ))
 
-        let snacks = this.props.foodMenu.filter(food => food.category === 'snacks').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let appetizers = this.props.foodMenu.filter(food => food.category === 'appetizers').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let soupsalad = this.props.foodMenu.filter(food => food.category === 'soupsalad').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let housefavorites = this.props.foodMenu.filter(food => food.category === 'housefavorites').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let steaks = this.props.foodMenu.filter(food => food.category === 'steaks').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let seafood = this.props.foodMenu.filter(food => food.category === 'seafood').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let pizzas = this.props.foodMenu.filter(food => food.category === 'pizzas').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let burgers = this.props.foodMenu.filter(food => food.category === 'burgers').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let sandwiches = this.props.foodMenu.filter(food => food.category === 'sandwiches').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let desserts = this.props.foodMenu.filter(food => food.category === 'desserts').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
-        
-        let kids = this.props.foodMenu.filter(food => food.category === 'kids').map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
+        let sortedData = sortByCategory(this.props.foodMenu)
+        let foodMenu = []
+        for(let key in sortedData) {
+            foodMenu.push(
+                <div >
+                    <h3 className="item-name">{key.toUpperCase()}</h3>
+                    <br />
+                    <br />
+                    <div className="testdiv">
+                        {
+                            sortedData[key].map(food => {
+                                return (
+                                    <div key={food.id} className="food-menu">
+                                            <Food  key={food.id} food={food} addToCart={this.addToCart}/>
+                                            <hr />
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </div>
+                </div>
+            )
+        }
+        {console.log(foodMenu)}
 
         return (
             <Grid>
-                <Row>
-                    
-                    <h2>Food Menu</h2>
+                <Row className='foodMenuTabs'>
+                <Tabs className='foodMenuTabs' defaultActiveKey={1} id="uncontrolled-tab-example">
+                    <Tab className='foodMenuTabs container2' eventKey={1} title="Display All">
+                        {foodMenu}
+                    </Tab>
+                    <Tab eventKey={2} title="Snacks">{foodMenu[0]}</Tab>
+                    <Tab eventKey={3} title="Appetizers">{foodMenu[1]}</Tab>
+                    <Tab eventKey={4} title="Soup & Salad">{foodMenu[2]}</Tab>
+                    <Tab eventKey={5} title="House Favorites">{foodMenu[3]}</Tab>
+                    <Tab eventKey={6} title="Steaks">{foodMenu[4]}</Tab>
+                    <Tab eventKey={7} title="Seafood">{foodMenu[5]}</Tab>
+                    <Tab eventKey={8} title="Pizzas">{foodMenu[6]}</Tab>
+                    <Tab eventKey={9} title="Burgers">{foodMenu[7]}</Tab>
+                    <Tab eventKey={10} title="Sandwiches">{foodMenu[8]}</Tab>
+                    <Tab eventKey={11} title="Desserts">{foodMenu[9]}</Tab>
+                    <Tab eventKey={12} title="Kids">{foodMenu[10]}</Tab>
 
-                            <h3>Snacks</h3>
-                            <div className='container2'>
-                                    {snacks}
-                            </div>
-                            <h3>Appetizers</h3>
-                            <div className='container2'>
-                                    {appetizers}
-                            </div>
-                            <h3>Soup or Salad</h3>
-                            <div className='container2'>
-                                    {soupsalad}
-                            </div>
-                            <h3>House Favorites</h3>
-                            <div className='container2'>
-                                    {housefavorites}
-                            </div>
-                            <h3>Steak</h3>
-                            <div className='container2'>
-                                    {steaks}
-                            </div>
-                            <h3>Seafood</h3>
-                            <div className='container2'>
-                                    {seafood}
-                            </div>
-                            <h3>Pizza</h3>
-                            <div className='container2'>
-                                    {pizzas}
-                            </div>
+                </Tabs>
+                    <hr />
+                    <div className='container2'>
+                        {/* {foodMenu}   */}
+                    </div>
 
-
+                            <div className='container2'>
+                                    
+                            </div>      
                 </Row>
-        
-
             </Grid>
         )
     }
@@ -121,21 +94,3 @@ const dispatchToProps = {
 }
 
 export default connect(mapStateToProps, dispatchToProps)(FoodMenu)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
