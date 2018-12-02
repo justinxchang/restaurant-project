@@ -8,7 +8,7 @@ class Food extends Component {
     constructor(props) {
         super(props)
 
-        
+
     }
 
     render(){
@@ -16,11 +16,12 @@ class Food extends Component {
         return (<div className='food-menu' key={food.id}>
             <div className="food-item" header={food.name}>
                     <div><strong>{food.name}</strong></div>
-                    <div>${food.price} | {food.description}</div>
                     <Image className="food-image" src={food.image} thumbnail responsive/>
+                    <div>{food.description}</div>
+                    <div>${food.price}</div>
                     <br />
                     <button onClick={() => this.props.addToCart(food)}>Add to Order</button>
-
+                    <br />
             </div>             
             </div>
         )

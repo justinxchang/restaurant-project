@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Bar, Line, Pie, Doughnut, Radar} from 'react-chartjs-2';
 import axios from 'axios';
+import {Grid, Row} from 'react-bootstrap'
 
 class Chart extends Component{
   constructor(props){
@@ -41,22 +42,28 @@ class Chart extends Component{
 
     return (
       <div className="chart">
-        <h1>Most Popular Items</h1>
+        <Grid>
+          <Row>
+            <h1>Most Popular Items</h1>
+            <div class="chart-container"> 
+              <Pie
+                data={formattedData}
+                options={{
+                  title:{
+                    display: this.props.displayTitle,
+                    text: 'Most Popular Items',
+                    fontSize: 25
+                  },
+                  legend:{
+                    display: true,
+                    position: 'right'
+                  }
+                }}
+              />
 
-        <Bar
-          data={formattedData}
-          options={{
-            title:{
-              display: this.props.displayTitle,
-              text: 'Most Popular Items',
-              fontSize: 25
-            },
-            legend:{
-              display: true,
-              position: 'right'
-            }
-          }}
-        />
+            </div>
+          </Row>
+        </Grid>
       </div>
     )
   }

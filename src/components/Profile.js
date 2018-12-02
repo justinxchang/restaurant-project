@@ -34,7 +34,6 @@ class Profile extends Component {
 function mapStateToProps(state){
     console.log('redux store state:', state)
     return state;
-    //user: state.user?
 }
 
 // this is what is happening with mapStateToProps

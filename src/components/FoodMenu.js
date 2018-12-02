@@ -14,6 +14,7 @@ class FoodMenu extends Component {
 
         this.addToCart = this.addToCart.bind(this)
     }
+
     async componentDidMount(){
         let res = await axios.get('/getAllFood')
         this.props.updateFoodMenu(res.data)
@@ -27,9 +28,9 @@ class FoodMenu extends Component {
     } 
  
     render(){
-        let foodList = this.props.foodMenu.map((food) => (
-            <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
-        ))
+        // let foodList = this.props.foodMenu.map((food) => (
+        //     <Food className="food-menu" key={food.id} food={food} addToCart={this.addToCart}/>
+        // ))
 
         let sortedData = sortByCategory(this.props.foodMenu)
         let foodMenu = []
@@ -55,9 +56,6 @@ class FoodMenu extends Component {
                 </div>
             )
         }
-        // {console.log(this.props)}
-        // {console.log(this.props.foodMenu)}
-        // {console.log(this.props.user.id)}
         
         return (
             <Grid>
@@ -77,6 +75,8 @@ class FoodMenu extends Component {
                     <Tab eventKey={12} title="Kids">{foodMenu[10]}</Tab>
                 </Tabs>     
                 </Row>
+                <a class="carousel-control left" role="button" to='/drinkmenu' href="#/drinkmenu"><span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a>
+                <a class="carousel-control right" role="button" to='/cart' href="#/cart"><span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a>
             </Grid>
         )
     }

@@ -2,7 +2,7 @@ SELECT
  name,
  SUM (quantity) as QUANTITY
 FROM
- orders
+ history
 GROUP BY
  name
 ORDER BY quantity DESC

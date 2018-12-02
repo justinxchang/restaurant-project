@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {updateOrders} from '../ducks/reducer'
-import {Table, Grid, Row, Col, Glyphicon} from 'react-bootstrap'
+import {Table, Grid, Row, Col, Glyphicon, Tabs, Tab} from 'react-bootstrap'
 import axios from 'axios'
 
 
@@ -13,15 +13,22 @@ class Orders extends Component {
         this.props.updateOrders(result.data)    
     }
 
+    async ordersToCompleted(id){
+        console.log('hit')
+        let response = await axios.put(`/ordersToCompleted/${id}`)
+        this.props.updateOrders(response.data)
+    }
+
     render(){
+        console.log(this.props.orders)
         let kitchenOrders = this.props.orders.filter(order => order.type === 'food').map((order, i) => {
 
             return (
                 <tr key={order.id}>
-                    <td>{order.order_num}</td>
-                    <td>{order.name}</td>
+                    <td>{order.order_num} </td>
+                    <td>{order.name} </td>
                     <td>{order.quantity}</td>
-                    <td><button>Mark Completed</button></td>
+                    <td><button onClick={() => this.ordersToCompleted(order.id)}>Mark Completed</button></td>
                 </tr>
             )
         })
@@ -33,33 +40,55 @@ class Orders extends Component {
                     <td>{order.order_num}</td>
                     <td>{order.name}</td>
                     <td>{order.quantity}</td>
-                    <td><button>Mark Completed</button></td>
+                    <td><button onClick={() => this.ordersToCompleted(order.id)}>Mark Completed</button></td>
                 </tr>
             )
         })
 
 
+
+
         return (
             <div>
-            <button>Kitchen</button>
-            <button>Bar</button>
             <Grid>
                 <Row className="row">
-                ORDERS
-                <Table responsive bordered>
-                    <thead>
-                        <tr>
-                        <th>ORDER #</th>
-                        <th>ITEM</th>
-                        <th>QUANTITY</th>
-                        <th>STATUS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* {kitchenOrders} */}
-                        {barOrders}
-                    </tbody>
-                    </Table>              
+                <Tabs className='foodMenuTabs' defaultActiveKey={1} id="uncontrolled-tab-example">
+                    <Tab className='foodMenuTabs' eventKey={1} title="Kitchen Orders">
+                    ORDERS
+                        <Table responsive bordered>
+                            <thead>
+                                <tr>
+                                <th>ORDER #</th>
+                                <th>ITEM</th>
+                                <th>QUANTITY</th>
+                                <th>STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {kitchenOrders}
+                                {/* {barOrders} */}
+                            </tbody>
+                        </Table> 
+                    </Tab>
+                    <Tab eventKey={2}  title="Bar Orders">
+                        ORDERS
+                        <Table responsive bordered>
+                            <thead>
+                                <tr>
+                                <th>ORDER #</th>
+                                <th>ITEM</th>
+                                <th>QUANTITY</th>
+                                <th>STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* {kitchenOrders} */}
+                                {barOrders}
+                            </tbody>
+                        </Table> 
+                    </Tab>
+                </Tabs>   
+             
                 </Row>
 
             </Grid>

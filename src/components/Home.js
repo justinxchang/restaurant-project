@@ -10,8 +10,8 @@ class Home extends Component {
         return (
             <Carousel>
             <Carousel.Item>
-                <div className="carousel-item" style={{backgroundImage: 'url(https://images.pexels.com/photos/159291/beer-machine-alcohol-brewery-159291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)'}} />
-                {/* <img alt="900x500" src="https://images.pexels.com/photos/159291/beer-machine-alcohol-brewery-159291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" /> */}
+                {/* <div className="carousel-item" style={{backgroundImage: 'url(https://images.pexels.com/photos/159291/beer-machine-alcohol-brewery-159291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)'}} /> */}
+                <img src="https://images.pexels.com/photos/159291/beer-machine-alcohol-brewery-159291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
                 <Carousel.Caption>
                     <div className="carousel-caption">
                         <h3>First slide label</h3>

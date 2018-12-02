@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 
@@ -26,4 +27,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  border-radius: 8px;
+  box-shadow: 1px 1px 10px black; 
+}
+
+.row-shadow {
+  border-radius: 8px;
+  box-shadow: 10px 10x 100px black; 
+}
+
+a.carousel-control.right {
+  position: fixed;
+}
+
+a.carousel-control.left {
+  position: fixed;
 }

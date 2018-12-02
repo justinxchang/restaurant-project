@@ -43,6 +43,7 @@ app.get('/getTotal', ctrl.getTotal)
 app.post('/chargeCard', ctrl.chargeCard)
 app.get('/getOrders', ctrl.getOrders)
 app.post('/addPoints/:id', ctrl.addPoints)
+app.put('/ordersToCompleted/:id', ctrl.ordersToCompleted)
 // app.get('/cartToOrders', ctrl.cartToOrders)
 
 app.get('/getOrderQuantities', ctrl.getOrderQuantities)

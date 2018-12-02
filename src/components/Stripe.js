@@ -21,7 +21,6 @@ class Stripe extends React.Component {
       axios.post(`/addPoints/${id}`, {points})
       .then(() => console.log(`Added ${points} points to ${id}'s account`))
     }
-    this.props.updateUser()
   }
 
   onToken = (token) => {
@@ -42,8 +41,8 @@ class Stripe extends React.Component {
     let total = (parseFloat(this.props.total) * 100)
     return (
       <StripeCheckout
-        name="Stripe Checcout"
-        description="Gettin paid"
+        name="Angeleno Bar and Grille"
+        description="Payment"
         amount={total}
         token={this.onToken}
         stripeKey={process.env.REACT_APP_PUBLIC_KEY}

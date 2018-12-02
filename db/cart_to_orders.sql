@@ -1,7 +1,7 @@
 INSERT INTO orders
 SELECT * FROM cart;
 
-DELETE FROM cart;
+INSERT INTO history
+SELECT * FROM cart;
 
-UPDATE orders
-SET order_num = order_num + 1
+DELETE FROM cart;

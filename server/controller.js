@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-let order_num = 0
+// let order_num = 0
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 module.exports = { 
@@ -33,14 +33,13 @@ module.exports = {
             res.status(200).send(drink)
         }) 
     },
-    addToCart: (req, res) => {
+    async addToCart (req, res) {
         let db = req.app.get('db')
-        console.log(req.body)
         let {name, price, type, member_id} = req.body
-        db.add_to_cart([order_num, name, price, type, member_id])
-        .then((cart) => {
-            res.status(200).send(cart)
-        }) 
+        let result = await db.increment()
+        let order_num = (parseInt(result[0].order_num) +1)
+        let cart = await db.add_to_cart([order_num, name, price, type, member_id])
+        res.status(200).send(cart)
     },
     async getFromCart (req, res) {
         let db = req.app.get('db')
@@ -50,7 +49,6 @@ module.exports = {
     editQuantity: (req, res) => {
         let db = req.app.get('db')
         let {id} = req.params 
-        console.log(req.body)
         let {quantity} = req.body
         let num = parseFloat(quantity)
         db.edit_cart_quantity([id, num])
@@ -69,12 +67,20 @@ module.exports = {
         db.get_total()
         .then(total => res.status(200).send(total))
     },
+    ordersToCompleted: (req, res) => {
+        let db = req.app.get('db')
+        let {id} = req.params 
+        db.orders_to_completed(id)
+        .then((cart) => {
+            res.status(200).send(cart) 
+        })        
+    },
     chargeCard: (req, res) => {
         const charge = stripe.charges.create({
             amount: req.body.amount,
             currency: 'usd',
             source: req.body.token.id,
-            description: 'Test charge from Justin'
+            description: 'Charge from Angeleno Bar and Grille'
         }, async function(err, charge) {
             if (err) {
                 console.log(err)

@@ -81,7 +81,7 @@ class Cart extends Component {
                     <Stripe />
 
                     </Row>
-
+                    <a class="carousel-control left" role="button" to='/foodmenu' href="#/foodmenu"><span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a>
                 </Grid>
 
 

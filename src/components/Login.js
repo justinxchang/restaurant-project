@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Grid, Row} from 'react-bootstrap'
 
 class Login extends Component {
 
@@ -8,18 +9,6 @@ class Login extends Component {
       email: '',
       password: ''
   }
-
-  // updateEmail(value){
-  //     this.setState({
-  //         email: value
-  //     })
-  // }
-
-  // updatePassword(value){
-  //     this.setState({
-  //         password: value
-  //     })
-  // }
 
   async login(){
       if(!this.state.email || !this.state.password){
@@ -32,10 +21,8 @@ class Login extends Component {
           password: this.state.password 
       })
       console.log(res)
-      //checking to see if we successfully logged in
       if(res.data.message === 'Logged In'){
-          this.props.history.push('/profile') // redirects us to /profile 
-          // history is like an array of where you've been, you'll always be on the last spot in the array, so if you push to the end, it'll redirect you to that page?
+          this.props.history.push('/profile') 
       } else {
           alert(res.data.message) 
       }
@@ -60,27 +47,32 @@ class Login extends Component {
 
   render(){
       return (
-          <div className='login-container'>
-              <form>
-                  <div>
-                      <label> Name: </label>
-                      <br />
-                      <input onChange={event => this.setState({name: event.target.value})} type='text' />
-                  </div>
-                  <div>
-                      <label> Email: </label>
-                      <br />
-                      <input onChange={event => this.setState({email: event.target.value})} type='email' />
-                  </div>
-                  <div>
-                      <label>Password: </label>
-                      <br />
-                      <input onChange={event => this.setState({password: event.target.value})}type='password' />
-                  </div>
-                  <button onClick={() => this.login()} type='button'>Login</button>
-                  <button onClick={() => this.signup()} type='button'>Signup</button>
-              </form>
-          </div>
+          <Grid>
+              <Row className="row-shadow">
+                  
+                <div className='login-container'>
+                    <form>
+                        <div>
+                            <label> Name: </label>
+                            <br />
+                            <input onChange={event => this.setState({name: event.target.value})} type='text' />
+                        </div>
+                        <div>
+                            <label> Email: </label>
+                            <br />
+                            <input onChange={event => this.setState({email: event.target.value})} type='email' />
+                        </div>
+                        <div>
+                            <label>Password: </label>
+                            <br />
+                            <input onChange={event => this.setState({password: event.target.value})}type='password' />
+                        </div>
+                        <button onClick={() => this.login()} type='button'>Login</button>
+                        <button onClick={() => this.signup()} type='button'>Signup</button>
+                    </form>
+                </div>
+              </Row>
+          </Grid>
       )
   }
 }
