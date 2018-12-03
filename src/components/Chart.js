@@ -15,6 +15,7 @@ class Chart extends Component{
   componentDidMount(){
       axios.get('/getOrderQuantities')
       .then(res => this.setState({quantities: res.data}))
+      console.log(this.state.quantities)
   }
 
   render(){
@@ -44,9 +45,27 @@ class Chart extends Component{
       <div className="chart">
         <Grid>
           <Row>
-            <h1>Most Popular Items</h1>
-            <div class="chart-container"> 
+            <h3>10 MOST POPULAR DRINKS</h3>
+            <div className="chart-container"> 
               <Pie
+                data={formattedData}
+                options={{
+                  title:{
+                    display: this.props.displayTitle,
+                    text: 'Most Popular Items',
+                    fontSize: 25
+                  },
+                  legend:{
+                    display: true,
+                    position: 'right'
+                  }
+                }}
+              />
+
+            </div><br/> <br/><hr /><br/>
+            <h3>10 MOST POPULAR FOOD</h3>
+            <div className="chart-container"> 
+              <Bar
                 data={formattedData}
                 options={{
                   title:{

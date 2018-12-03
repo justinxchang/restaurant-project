@@ -19,7 +19,6 @@ class Navbar2 extends Component {
         if(res.data){
             this.setState({loggedIn: true})
             console.log('res',res.data)
-            
         }
     }
     
@@ -28,7 +27,7 @@ class Navbar2 extends Component {
 
         return (
             <Nav pullRight>
-                <NavItem eventKey={5} componentClass={Link} to='/addform' href="/addform">
+                {/* <NavItem eventKey={5} componentClass={Link} to='/addform' href="/addform">
                     Add Form
                 </NavItem>
                 <NavItem eventKey={6} componentClass={Link} to='/orders' href="/orders">
@@ -36,7 +35,7 @@ class Navbar2 extends Component {
                 </NavItem>
                 <NavItem eventKey={7} componentClass={Link} to='/chart' href="/chart">
                     Chart
-                </NavItem>
+                </NavItem> */}
                 <NavItem eventKey={8} componentClass={Link} to='/profile' href="/profile">
                     Profile
                 </NavItem>

@@ -6,18 +6,3 @@
   margin: 0;
 } */
 
-.carousel.item {
-    background-size: cover;
-    width: 100%;
-    /* height: 900px; */
-}
-
-.carousel.caption {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-}
-

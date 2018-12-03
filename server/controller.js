@@ -162,11 +162,9 @@ module.exports = {
         }
     },
     userData(req, res) {
-        let userEmail = req.session.user.email;
         let db = req.app.get('db')
-        console.log(req.session.user.email)
         if (req.session.user) {
-            db.find_user(userEmail).then(resp => {
+            db.find_user(req.session.user.email).then(resp => {
                 req.session.user = {
                     email: resp[0].member_email, 
                     id: resp[0].member_id, 
@@ -196,11 +194,23 @@ module.exports = {
     redeemPoints(req, res) {
         let db = req.app.get('db')
         let {id} = req.params 
-        let points = req.body.points
-        db.redeem_points([id, points])
+        db.redeem_points([id])
         .then((response) => {
-            res.status(200).send(response)
+            res.status(200).send(req.session.user = {
+                email: response[0].member_email, 
+                id: response[0].member_id, 
+                points: response[0].points,
+                admin: response[0].admin
+            })
             console.log('points response', response) 
         })        
+    },
+    getMemberHistory(req, res) {
+        let db = req.app.get('db')
+        let {id} = req.params 
+        db.get_member_history([id])
+        .then((response) => {
+            res.status(200).send(response)
+            })  
     }
 }  

@@ -10,6 +10,7 @@ import Orders from './components/Orders'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import Chart from './components/Chart'
+import MemberHistory from './components/MemberHistory'
 
 export default (
     <Switch>
@@ -23,5 +24,6 @@ export default (
         <Route component={Login} path='/login'/>
         <Route component={Profile} path='/profile'/>
         <Route component={Chart} path='/chart'/>
+        <Route component={MemberHistory} path='/memberHistory'/>
     </Switch>
 )

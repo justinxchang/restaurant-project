@@ -52,7 +52,7 @@ class Drinks extends Component {
                         <Image className="drink-logo" src={drink.logo} thumbnail responsive/>
                     </Col>
                     <p className="drink-description"><strong>Description</strong><br />{drink.description}</p>
-                    <br /><br />
+                    <br /><br /><br/><br/>
                     <a href={drink.website}>Website</a>
                 </Modal.Body>
                 <Modal.Footer>

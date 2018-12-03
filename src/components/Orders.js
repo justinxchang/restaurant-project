@@ -54,7 +54,7 @@ class Orders extends Component {
                 <Row className="row">
                 <Tabs className='foodMenuTabs' defaultActiveKey={1} id="uncontrolled-tab-example">
                     <Tab className='foodMenuTabs' eventKey={1} title="Kitchen Orders">
-                    ORDERS
+                    <h3>ORDERS</h3>
                         <Table responsive bordered>
                             <thead>
                                 <tr>

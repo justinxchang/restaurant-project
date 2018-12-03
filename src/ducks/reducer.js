@@ -4,7 +4,8 @@ const initailState = {
     cart: [],
     orders: [],
     total: 0,
-    user: []
+    user: [],
+    memberHistory: []
 }
 
 const UPDATE_FOOD_MENU = "UPDATE_FOOD_MENU"
@@ -13,6 +14,7 @@ const UPDATE_CART = "UPDATE_CART"
 const UPDATE_TOTAL = "UPDATE_TOTAL"
 const UPDATE_ORDERS = "UPDATE_ORDERS"
 const UPDATE_USER = "UPDATE_USER"
+const UPDATE_MEMBER_HISTORY = "UPDATE_MEMBER_HISTORY"
 
 export default function (state = initailState, action) {
     switch (action.type) {
@@ -28,6 +30,8 @@ export default function (state = initailState, action) {
             return { ...state, orders: action.payload }
         case UPDATE_USER:
             return { ...state, user: action.payload }
+        case UPDATE_MEMBER_HISTORY:
+            return { ...state, memberHistory: action.payload }
         default:
             return state
     }
@@ -71,6 +75,12 @@ export function updateUser(user){
     return {
         type: UPDATE_USER,
         payload: user
+    }
+}
+export function updateMemberHistory(member){
+    return {
+        type: UPDATE_MEMBER_HISTORY,
+        payload: member
     }
 }
 
