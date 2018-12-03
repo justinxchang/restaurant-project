@@ -55,4 +55,4 @@ app.post('/auth/login', ctrl.login)
 app.get('/api/user-data', ctrl.userData)
 app.get('/auth/logout', ctrl.logout)
 
-app.listen(SERVER_PORT, () => console.log(`Server listening on port: ${SERVER_PORT}`))  
+app.listen(SERVER_PORT, () => console.log(`Server listening on port: ${SERVER_PORT}`))   
