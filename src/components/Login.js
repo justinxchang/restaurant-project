@@ -7,7 +7,8 @@ class Login extends Component {
   state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      isAdmin: false,
   }
 
   async login(){
@@ -18,7 +19,8 @@ class Login extends Component {
       let res = await axios.post('/auth/login', {
           name: this.state.name,
           email: this.state.email,
-          password: this.state.password 
+          password: this.state.password,
+
       })
       console.log(res)
       if(res.data.message === 'Logged In'){
@@ -52,12 +54,14 @@ class Login extends Component {
                   
                 <div className='login-container'>
                     <form>
-                        <div>
+                        {/* <div>
                             <label> Name: </label>
                             <br />
                             <input onChange={event => this.setState({name: event.target.value})} type='text' />
-                        </div>
+                        </div> */}
                         <div>
+                            <h2>REWARDS MEMBERS</h2><br/>
+                            <p className="points-info">Earn more points with every order! For every dollar that you spend, you will earn 100 rewards points. Once you've earned 25000 points, you can redeem a $25.00 gift card towards your next visit!</p><br/>
                             <label> Email: </label>
                             <br />
                             <input onChange={event => this.setState({email: event.target.value})} type='email' />
@@ -67,8 +71,10 @@ class Login extends Component {
                             <br />
                             <input onChange={event => this.setState({password: event.target.value})}type='password' />
                         </div>
-                        <button onClick={() => this.login()} type='button'>Login</button>
+                        <br/><br/>
+                        <button onClick={() => this.login()} type='button'>Login</button> <span>   </span> 
                         <button onClick={() => this.signup()} type='button'>Signup</button>
+                        <br /><br />
                     </form>
                 </div>
               </Row>

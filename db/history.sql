@@ -115,3 +115,7 @@ GROUP BY
  name
 ORDER BY quantity DESC
 
+SELECT m.member_name, m.member_email, m.points, h.name, h.order_num, h.price
+From member m
+JOIN history h on h.member_id = m.member_id
+ORDER by h.order_num

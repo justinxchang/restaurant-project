@@ -150,7 +150,8 @@ module.exports = {
                 req.session.user = {
                     email: foundUser[0].member_email, 
                     id: foundUser[0].member_id, 
-                    points: foundUser[0].points
+                    points: foundUser[0].points,
+                    admin: foundUser[0].admin
                 }
                 res.status(200).send({message: 'Logged In'})
             } else {
@@ -161,8 +162,19 @@ module.exports = {
         }
     },
     userData(req, res) {
-        if (req.session.user) { // if line 19 or 37 happened
-            res.status(200).send(req.session.user)
+        let userEmail = req.session.user.email;
+        let db = req.app.get('db')
+        console.log(req.session.user.email)
+        if (req.session.user) {
+            db.find_user(userEmail).then(resp => {
+                req.session.user = {
+                    email: resp[0].member_email, 
+                    id: resp[0].member_id, 
+                    points: resp[0].points,
+                    admin: resp[0].admin
+                }
+                res.status(200).send(req.session.user)
+            })
         } else {
             res.sendStatus(401)
         }
@@ -175,10 +187,20 @@ module.exports = {
         let db = req.app.get('db')
         let {id} = req.params 
         let points = req.body.points
-        console.log('points', points)
         db.add_points([id, points])
         .then((response) => {
-            res.status(200).send(response) 
+            res.status(200).send(response)
+            console.log('points response', response) 
+        })        
+    },
+    redeemPoints(req, res) {
+        let db = req.app.get('db')
+        let {id} = req.params 
+        let points = req.body.points
+        db.redeem_points([id, points])
+        .then((response) => {
+            res.status(200).send(response)
+            console.log('points response', response) 
         })        
     }
 }  

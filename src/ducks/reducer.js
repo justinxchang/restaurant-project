@@ -4,7 +4,7 @@ const initailState = {
     cart: [],
     orders: [],
     total: 0,
-    user: {}
+    user: []
 }
 
 const UPDATE_FOOD_MENU = "UPDATE_FOOD_MENU"

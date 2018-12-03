@@ -1,46 +1,46 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux'
-import {updateCart, updateTotal} from '../ducks/reducer'
+import { connect } from 'react-redux'
+import { updateCart, updateTotal } from '../ducks/reducer'
 import axios from 'axios';
 import Stripe from './Stripe'
-import {Table, Grid, Row, Col, Glyphicon} from 'react-bootstrap'
+import { Table, Grid, Row, Col, Glyphicon } from 'react-bootstrap'
 import './Cart.css'
 
 class Cart extends Component {
 
-    async componentDidMount(){
+    async componentDidMount() {
         let result = await axios.get('/getFromCart')
         this.props.updateCart(result.data)
-        this.getTotal()      
+        this.getTotal()
     }
 
-    async cartToOrders(cart){
+    async cartToOrders(cart) {
         let response = await axios.get('/cartToOrders')
         this.props.updateCart(response.data)
     }
 
-    async getTotal(){
+    async getTotal() {
         let response = await axios.get(`/getTotal`)
         console.log(response.data[0].sum)
         let total = response.data[0].sum
         this.props.updateTotal(total)
     }
 
-    async deleteItem(id){
+    async deleteItem(id) {
         let result = await axios.delete(`/deleteFromCart/${id}`)
         this.props.updateCart(result.data)
-        this.getTotal()      
-    } 
-    
-    async editQuantity(quantity, id){
-        let result = await axios.put(`/editQuantity/${id}`, {quantity})
+        this.getTotal()
+    }
+
+    async editQuantity(quantity, id) {
+        let result = await axios.put(`/editQuantity/${id}`, { quantity })
         this.props.updateCart(result.data)
         console.log(result.data)
         this.getTotal()
     }
 
-    render(){
+    render() {
         let viewCart = this.props.cart.map((item) => {
             return (
                 <tr key={item.id}>
@@ -52,7 +52,7 @@ class Cart extends Component {
                         <option value='3'>3</option>
                         <option value='4'>4</option>
                         <option value='5'>5</option>
-                    </select> <button onClick={() => this.deleteItem(item.id)}><Glyphicon glyph='trash'/></button></td>
+                    </select> <button onClick={() => this.deleteItem(item.id)}><Glyphicon glyph='trash' /></button></td>
                 </tr>
             )
         })
@@ -61,27 +61,28 @@ class Cart extends Component {
                 <Grid>
                     <Row className="row">
 
-                    Cart
+                    <h2>CART</h2>
                     <Table responsive bordered>
-                        <thead>
-                            <tr>
-                            <th className='cart-name'>NAME</th>
-                            <th className='cart-price'>PRICE</th>
-                            <th className='cart-quantity'>QUANTITY</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {viewCart}
-                        </tbody>
+                            <thead>
+                                <tr>
+                                    <th className='cart-name'>NAME</th>
+                                    <th className='cart-price'>PRICE</th>
+                                    <th className='cart-quantity'>QUANTITY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {viewCart}
+                            </tbody>
                         </Table>
-                    
-                    <br />
-                    Total: ${this.props.total}
-                    <br />
-                    <Stripe />
+
+                        <br />
+                        Total: ${this.props.total}
+                        <br />
+                        <Stripe />
+                        <br /><br />
 
                     </Row>
-                    <a class="carousel-control left" role="button" to='/foodmenu' href="#/foodmenu"><span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a>
+                    <a className="carousel-control left" role="button" to='/foodmenu' href="#/foodmenu"><span className="glyphicon glyphicon-chevron-left"></span><span className="sr-only">Previous</span></a>
                 </Grid>
 
 
@@ -90,7 +91,7 @@ class Cart extends Component {
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return state
 }
 

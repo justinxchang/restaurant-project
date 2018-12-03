@@ -1,11 +1,12 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { Grid, Row, Table } from 'react-bootstrap'
 
 
 class AddForm extends Component {
-    
+
     state = {
         foodMenu: [],
         foods: {},
@@ -28,7 +29,7 @@ class AddForm extends Component {
         num: 0
     }
 
-    createFood(){
+    createFood() {
         axios.post('/createFood', {
             foodName: this.state.foodName,
             foodDescription: this.state.foodDescription,
@@ -36,11 +37,11 @@ class AddForm extends Component {
             foodImage: this.state.foodImage,
             foodCategory: this.state.foodCategory
         })
-        .then(res => this.setState({foods: res.data}))
+            .then(res => this.setState({ foods: res.data }))
         console.log(`Added ${this.state.foodName} to database`)
     }
 
-    createDrink(){
+    createDrink() {
         axios.post('/createDrink', {
             drinkName: this.state.drinkName,
             drinkDescription: this.state.drinkDescription,
@@ -52,69 +53,116 @@ class AddForm extends Component {
             drinkWebsite: this.state.drinkWebsite,
             drinkLogo: this.state.drinkLogo,
         })
-        .then(res => this.setState({drinks: res.data}))
+            .then(res => this.setState({ drinks: res.data }))
         console.log(`Added ${this.state.drinkName} to database`)
     }
 
-    
-    render(){
+
+    render() {
         return (
-            <div>
+            <Grid>
+                <Row>
+                    <Row>
+                        <h2>ADD FORM</h2><br />
 
-                <div>
-                    <h1>Add Form</h1>
+                        <Table className="add-form-table" responsive bordered>
+                            <tbody>
+                                <tr>
+                                    <td>Food Name</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ foodName: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Food Description</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ foodDescription: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Food Price</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ foodPrice: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Food Image</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ foodImage: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Food Category</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ foodCategory: event.target.value })} />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        <button onClick={() => this.createFood()}>Add to Food Menu</button><br /><br /> <br />
+                        <Table className="add-form-table" responsive bordered>
+                            <tbody>
+                                <tr>
+                                    <td>Drink Name</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkName: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink ABV</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkABV: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink Origin</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkOrigin: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink Description</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkDescription: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink Subcategory</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkSubcategory: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink Category</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkCategory: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink Website</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkWebsite: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink Logo</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkLogo: event.target.value })} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Drink Price</td>
+                                    <td>
+                                        <input type='text' onChange={(event) => this.setState({ drinkPrice: event.target.value })} />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        <button onClick={() => this.createDrink()}>Add to Drink Menu</button><br /> <br />
 
-                    Food Name:
-                    <input type='text' onChange={(event) => this.setState({foodName: event.target.value})} />
-                    <br />
-                    Food Description:
-                    <input type='text' onChange={(event) => this.setState({foodDescription: event.target.value})} />
-                    <br />
-                    Food Price:
-                    <input type='text' onChange={(event) => this.setState({foodPrice: event.target.value})} />
-                    <br />
-                    Food Image:
-                    <input type='text' onChange={(event) => this.setState({foodImage: event.target.value})} />
-                    <br />
-                    Food Category:
-                    <input type='text' onChange={(event) => this.setState({foodCategory: event.target.value})} />
-                    <br />
-                    <br />
-                    <button onClick={() => this.createFood()}>Add to Database</button>
-                    <br />
-                    <br />
-                </div>
-                <div>
-                    Drink Name:
-                    <input type='text' onChange={(event) => this.setState({drinkName: event.target.value})} />
-                    <br />
-                    Drink ABV:
-                    <input type='text' onChange={(event) => this.setState({drinkABV: event.target.value})} />
-                    <br />
-                    Drink Origin:
-                    <input type='text' onChange={(event) => this.setState({drinkOrigin: event.target.value})} />
-                    <br />
-                    Drink Description:
-                    <input type='text' onChange={(event) => this.setState({drinkDescription: event.target.value})} />
-                    <br />
-                    Drink Sub Category:
-                    <input type='text' onChange={(event) => this.setState({drinkSubcategory: event.target.value})} />
-                    <br />
-                    Drink Category:
-                    <input type='text' onChange={(event) => this.setState({drinkCategory: event.target.value})} />
-                    <br />
-                    Drink Website:
-                    <input type='text' onChange={(event) => this.setState({drinkWebsite: event.target.value})} />
-                    <br />
-                    Drink Logo:
-                    <input type='text' onChange={(event) => this.setState({drinkLogo: event.target.value})} />
-                    <br />
-                    Drink Price:
-                    <input type='text' onChange={(event) => this.setState({drinkPrice: event.target.value})} />
-                    <br />
-                    <button onClick={() => this.createDrink()}>Add to Database</button>
-                </div>
-            </div>
+                    </Row>
+                </Row>
+            </Grid>
         )
     }
 }

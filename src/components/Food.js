@@ -8,6 +8,9 @@ class Food extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            alert: ''
+        }
 
     }
 
@@ -21,7 +24,7 @@ class Food extends Component {
                     <div>${food.price}</div>
                     <br />
                     <button onClick={() => this.props.addToCart(food)}>Add to Order</button>
-                    <br />
+                    <br /><br />
             </div>             
             </div>
         )

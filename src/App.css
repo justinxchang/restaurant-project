@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   min-height: 100vh;
+  line-height: 1.6;
 }
 
 
@@ -45,4 +46,54 @@ a.carousel-control.right {
 
 a.carousel-control.left {
   position: fixed;
+}
+
+.carousel-image {
+    position: relative;
+    width: 100%;
+    background-size: cover;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-image .carousel-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.points-info {
+  margin: auto;
+  align-items: center;
+  width: 50%;
+
+}
+
+.add-form-table {
+  width: 50%;
+  align-items: center;
+  margin: auto;
+}
+
+.carousel-control {
+  width: 8%;
+}
+
+
+.get-started-button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
 }
