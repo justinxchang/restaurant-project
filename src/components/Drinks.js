@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Modal, Col, Image, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Modal, Col, Image, Button, ListGroupItem} from 'react-bootstrap'
 
 class Drinks extends Component {
     constructor(props) {

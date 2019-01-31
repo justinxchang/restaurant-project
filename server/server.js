@@ -45,7 +45,6 @@ app.get('/getOrders', ctrl.getOrders)
 app.post('/addPoints/:id', ctrl.addPoints)
 app.get('/redeemPoints/:id', ctrl.redeemPoints)
 app.put('/ordersToCompleted/:id', ctrl.ordersToCompleted)
-// app.get('/cartToOrders', ctrl.cartToOrders)
 app.get('/getMemberHistory/:id', ctrl.getMemberHistory)
 
 app.get('/getOrderQuantities', ctrl.getOrderQuantities)

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'
 import { Grid, Row, Table } from 'react-bootstrap'
-
 
 class AddForm extends Component {
 
@@ -56,7 +53,6 @@ class AddForm extends Component {
             .then(res => this.setState({ drinks: res.data }))
         console.log(`Added ${this.state.drinkName} to database`)
     }
-
 
     render() {
         return (

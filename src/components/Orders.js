@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {updateOrders} from '../ducks/reducer'
-import {Table, Grid, Row, Col, Glyphicon, Tabs, Tab} from 'react-bootstrap'
+import {Table, Grid, Row, Tabs, Tab} from 'react-bootstrap'
 import axios from 'axios'
-
 
 class Orders extends Component {
 
@@ -44,9 +42,6 @@ class Orders extends Component {
                 </tr>
             )
         })
-
-
-
 
         return (
             <div>

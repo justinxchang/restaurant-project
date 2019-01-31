@@ -54,11 +54,6 @@ class Login extends Component {
                   
                 <div className='login-container'>
                     <form>
-                        {/* <div>
-                            <label> Name: </label>
-                            <br />
-                            <input onChange={event => this.setState({name: event.target.value})} type='text' />
-                        </div> */}
                         <div>
                             <h2>REWARDS MEMBERS</h2><br/>
                             <p className="points-info">Earn more points with every order! For every dollar that you spend, you will earn 100 rewards points. Once you've earned 25000 points, you can redeem a $25.00 gift card towards your next visit!</p><br/>
@@ -71,10 +66,11 @@ class Login extends Component {
                             <br />
                             <input onChange={event => this.setState({password: event.target.value})}type='password' />
                         </div>
-                        <br/><br/>
+                        <br/>
                         <button onClick={() => this.login()} type='button'>Login</button> <span>   </span> 
                         <button onClick={() => this.signup()} type='button'>Signup</button>
-                        <br /><br />
+                        <br />
+                        <h6>(Log in with Email: staff@abg.com, Password: "spacebar" to view as a staff member)</h6>
                     </form>
                 </div>
               </Row>

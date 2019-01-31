@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { Navbar, Nav, NavItem } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
+import { Nav, NavItem } from 'react-bootstrap'
 import './Navbar.css'
 import axios from 'axios'
 
@@ -27,35 +26,24 @@ class Navbar2 extends Component {
 
             return (
                 <Nav pullRight>
-                    {/* <NavItem eventKey={5} componentClass={Link} to='/addform' href="/addform">
-                    Add Form
-                </NavItem>
-                <NavItem eventKey={6} componentClass={Link} to='/orders' href="/orders">
-                    Orders
-                </NavItem>
-                <NavItem eventKey={7} componentClass={Link} to='/chart' href="/chart">
-                    Chart
-                </NavItem> */}
                     <NavItem eventKey={4} componentClass={Link} to='/login' href="/login">
                         Login
-            </NavItem>
+                    </NavItem>
                     <NavItem eventKey={8} componentClass={Link} to='/profile' href="/profile">
                         Profile
-                </NavItem>
-
+                    </NavItem>
                 </Nav>
             )
 
         } else {
             return (
                 <Nav pullRight>
-
                     <NavItem eventKey={4} componentClass={Link} to='/login' href="/login">
                         Login
-            </NavItem>
+                    </NavItem>
                     <NavItem eventKey={8} componentClass={Link} to='/profile' href="/profile">
                         Profile
-                </NavItem>
+                    </NavItem>
                 </Nav>
             )
         }

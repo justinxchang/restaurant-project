@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom';
-import {connect} from 'react-redux';
-import {ListGroupItem, Image} from 'react-bootstrap'
+import {Image} from 'react-bootstrap'
 import './Food.css'
 
 class Food extends Component {
@@ -11,7 +9,6 @@ class Food extends Component {
         this.state = {
             alert: ''
         }
-
     }
 
     render(){

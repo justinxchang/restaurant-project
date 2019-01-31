@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Food from './Food'
 import axios from 'axios';
-import { getFromCart, updateFoodMenu, updateUser } from '../ducks/reducer'
+import { updateFoodMenu, updateUser } from '../ducks/reducer'
 import { Grid, Row, Tabs, Tab } from 'react-bootstrap'
 import './Food.css'
 import { sortByCategory } from './sorter';

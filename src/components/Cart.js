@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { updateCart, updateTotal } from '../ducks/reducer'
 import axios from 'axios';
 import Stripe from './Stripe'
-import { Table, Grid, Row, Col, Glyphicon } from 'react-bootstrap'
+import { Table, Grid, Row, Glyphicon } from 'react-bootstrap'
 import './Cart.css'
 
 class Cart extends Component {

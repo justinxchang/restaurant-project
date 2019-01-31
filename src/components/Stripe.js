@@ -3,8 +3,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux'
 import { updateCart, updateUser } from '../ducks/reducer'
 import SweetAlert from 'react-bootstrap-sweetalert'
-
-
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 
@@ -47,8 +45,6 @@ class Stripe extends React.Component {
     this.setState({ alert: `Added ${total} rewards points to your account!` })
   }
 
-
-
   render() {
     let total = (parseFloat(this.props.total) * 100)
     return (
@@ -66,10 +62,8 @@ class Stripe extends React.Component {
             <SweetAlert title={this.state.alert} onConfirm={() => this.setState({ alert: '' })} />
           }
         </div>
-
       </div>
     )
-
   }
 }
 

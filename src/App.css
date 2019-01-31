@@ -107,8 +107,8 @@ font-size: 18px;
 }
 
 .carousel-button {
-  width: 200px;
-  height: 60px;
+  width: 250px;
+  height: 80px;
   font-size: 50px;
   opacity: .95;
 }
@@ -129,5 +129,5 @@ font-size: 18px;
   font-size: 20px;
   color: black;
   background: white;
-  opacity: 0.6;
+  opacity: 0.8;
 }

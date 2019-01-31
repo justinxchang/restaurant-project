@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import axios from 'axios';
 import { updateDrinkMenu } from '../ducks/reducer'
@@ -8,7 +7,6 @@ import './DrinkMenu.css'
 import Drinks from './Drinks'
 import { sortByCategory } from './sorter'
 import SweetAlert from 'react-bootstrap-sweetalert'
-
 
 class DrinkMenu extends Component {
     constructor(props) {
@@ -103,7 +101,7 @@ class DrinkMenu extends Component {
                 {this.state.alert &&
                     <SweetAlert title={this.state.alert} onConfirm={() => this.setState({ alert: '' })} />
                 }
-                <a className="carousel-control left" role="button" to='/' href="#"><span className="glyphicon glyphicon-chevron-left"></span><span className="sr-only">Previous</span></a>
+                <a className="carousel-control left" role="button" to='/' href="#/"><span className="glyphicon glyphicon-chevron-left"></span><span className="sr-only">Previous</span></a>
                 <a className="carousel-control right" role="button" to='/foodemnu' href="#/foodmenu"><span className="glyphicon glyphicon-chevron-right"></span><span className="sr-only">Next</span></a>
             </Grid>
         )

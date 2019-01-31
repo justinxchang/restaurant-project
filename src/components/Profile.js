@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { Grid, Row } from 'react-bootstrap'
 import SweetAlert from 'react-bootstrap-sweetalert'
 
-
 class Profile extends Component {
     constructor(props) {
         super(props)

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Bar, Line, Pie, Doughnut, Radar} from 'react-chartjs-2';
+import {Bar, Pie} from 'react-chartjs-2';
 import axios from 'axios';
 import {Grid, Row} from 'react-bootstrap'
 
