@@ -7,16 +7,12 @@
     display: flex;
 }
 
-
-
 .food-item {
     background-image: radial-gradient(white, #ddd);
     border: 1px solid lightgray;
     margin: 5px;
     border-radius: 5px;
 }
-
-
 
 .item-name {
     background: grey;
@@ -55,11 +51,6 @@ ul.nav.nav-tabs {
     padding: 10px;
 }
 
-/* 
-.navbar  {
-    background: black;
+.food-add:hover {
+    background: rgb(238, 238, 238);
 }
-
-.navbar-inverse {
-    background: black;
-} */

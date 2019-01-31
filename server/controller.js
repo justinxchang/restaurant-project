@@ -105,7 +105,7 @@ module.exports = {
         let db = req.app.get('db')
         let response = await db.get_order_quantities()
         res.status(200).send(response)
-        console.log(response)
+        console.log('order quantities', response)
     },
 
 

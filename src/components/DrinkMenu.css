@@ -6,3 +6,10 @@
     margin-left: 12px;
 }
 
+.drink-add:hover {
+    background: rgb(238, 238, 238);
+}
+
+.more-info:hover {
+    font-weight: 900;
+}

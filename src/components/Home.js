@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { Carousel } from 'react-bootstrap'
 import './Home.css'
+import Image1 from '../images/brewery-1.jpg'
+import Image2 from '../images/brewery-2.jpg'
+import Image3 from '../images/brewery-3.jpg'
 
 
 class Home extends Component {
@@ -12,7 +15,7 @@ class Home extends Component {
                 <Carousel>
                     <Carousel.Item>
                         <div className="carousel-image">
-                            <img src="https://images.pexels.com/photos/159291/beer-machine-alcohol-brewery-159291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                            <img src={Image1} />
                             <Link className="get-started-button" to='/drinkMenu'>
                                 <button className='carousel-button'>Get Started</button></Link>
 
@@ -26,7 +29,7 @@ class Home extends Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <div className="carousel-image">
-                            <img alt="900x500" src="https://images.pexels.com/photos/681847/pexels-photo-681847.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                            <img src={Image2} />
                             <Link className="get-started-button" to='/drinkMenu'>
                                 <button className='carousel-button'>Get Started</button></Link>
                         </div>
@@ -37,7 +40,7 @@ class Home extends Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <div className="carousel-image">
-                            <img alt="900x500" src="https://images.pexels.com/photos/5317/food-salad-restaurant-person.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                            <img src={Image3}/>
                             <Link className="get-started-button" to='/drinkMenu'>
                                 <button className='carousel-button'>Get Started</button></Link>
                         </div>

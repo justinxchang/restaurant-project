@@ -23,7 +23,7 @@ class Food extends Component {
                     <div>{food.description}</div>
                     <div>${food.price}</div>
                     <br />
-                    <button onClick={() => this.props.addToCart(food)}>Add to Order</button>
+                    <button className='food-add' onClick={() => this.props.addToCart(food)}>Add to Order</button>
                     <br /><br />
             </div>             
             </div>

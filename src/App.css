@@ -55,8 +55,8 @@ a.carousel-control.left {
 }
 
 .carousel-image img {
-  width: 100%;
-   /* height: auto; */
+  height: 100vh;
+  overflow: hidden;
 }
 
 .carousel-image .carousel-button {
@@ -89,8 +89,6 @@ text-align: center;
 font-size: 18px;
 }
 
-
-
 .points-info {
   margin: auto;
   align-items: center;
@@ -119,16 +117,17 @@ font-size: 18px;
   font-size: 20px;
   color: black;
 }
-/* .get-started-button {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-} */
 
 .staff-button {
   font-size: 20px;
   background: black;
   width: 200px;
   height: 50px;
+}
 
+.carousel-image .carousel-button:hover {
+  font-size: 20px;
+  color: black;
+  background: white;
+  opacity: 0.6;
 }

@@ -26,10 +26,10 @@ class Drinks extends Component {
                 <span
                     onClick={() => this.setState({ show: true })}
                 >
-                    <strong>More Info</strong>
+                    <strong className='more-info'>More Info</strong>
                 </span>
                     <br /><br />
-                    <button onClick={() => this.props.addToCart(drink)}>Add to Order</button>
+                    <button className='drink-add' onClick={() => this.props.addToCart(drink)}>Add to Order</button>
             
             </ListGroupItem>
             
