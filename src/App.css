@@ -131,3 +131,98 @@ font-size: 18px;
   background: white;
   opacity: 0.8;
 }
+
+.food-image {
+  width: 75%;
+}
+
+.food-menu { 
+  width: 320px;
+  display: flex;
+}
+
+.food-item {
+  background-image: radial-gradient(white, #ddd);
+  border: 1px solid lightgray;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.item-name {
+  background: grey;
+  padding: 25px;
+}
+
+.testdiv {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.container {
+  background: white;
+} 
+
+a {
+  color: gray;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  background-color: #ddd;
+}
+
+.App {
+  background-image: url('http://www.sympatico.ca/image/policy:1.3810541:1525996235/biere-microbrasserie-2-jpg.jpg?w=4019&$p$w=5071b32');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+ul.nav.nav-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.food-add:hover {
+  background: rgb(238, 238, 238);
+}
+
+.drink-description {
+  text-align: left;
+}
+
+#contained-modal-title {
+  margin-left: 12px;
+}
+
+.drink-add:hover {
+  background: rgb(238, 238, 238);
+}
+
+.more-info:hover {
+  font-weight: 900;
+}
+
+.container {
+  background: transparent;
+}
+
+tr {
+  text-align: left;
+}
+
+.cart-name {
+  width: 75%;
+}
+
+.cart-price {
+  text-align: right;
+}
+
+
+.row {
+  background: lightgray;
+  border-radius:8px;
+}

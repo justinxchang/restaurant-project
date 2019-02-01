@@ -18,7 +18,7 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-        let res = await axios.get('/api/user-data');
+        let res = await axios.get('/auth/user-data');
         this.props.updateUser(res.data)
         console.log("user info", this.props.user)
         this.setState({ isAdmin: this.props.user.admin })

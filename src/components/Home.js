@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap'
-import './Home.css'
+// import './Home.css'
 import Image1 from '../images/brewery-1.jpg'
 import Image2 from '../images/brewery-2.jpg'
 import Image3 from '../images/brewery-3.jpg'

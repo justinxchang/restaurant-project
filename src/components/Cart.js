@@ -4,7 +4,7 @@ import { updateCart, updateTotal } from '../ducks/reducer'
 import axios from 'axios';
 import Stripe from './Stripe'
 import { Table, Grid, Row, Glyphicon } from 'react-bootstrap'
-import './Cart.css'
+// import './Cart.css'
 
 class Cart extends Component {
 
@@ -21,6 +21,7 @@ class Cart extends Component {
 
     async getTotal() {
         let response = await axios.get(`/getTotal`)
+        console.log(response.data)
         console.log(response.data[0].sum)
         let total = response.data[0].sum
         this.props.updateTotal(total)

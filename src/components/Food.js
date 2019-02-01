@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Image} from 'react-bootstrap'
-import './Food.css'
+// import './Food.css'
 
 class Food extends Component {
     constructor(props) {

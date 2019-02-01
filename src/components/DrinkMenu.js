@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios';
 import { updateDrinkMenu } from '../ducks/reducer'
 import { Grid, Row, Tabs, Tab } from 'react-bootstrap'
-import './DrinkMenu.css'
+// import './DrinkMenu.css'
 import Drinks from './Drinks'
 import { sortByCategory } from './sorter'
 import SweetAlert from 'react-bootstrap-sweetalert'
@@ -29,14 +29,13 @@ class DrinkMenu extends Component {
         let id = this.props.user.id;
         let { name, price, type } = drinkObj
         let res = await axios.post('/addToCart', { name, price, type, member_id: id })
+        console.log(res)
         console.log(`Added ${drinkObj.name} to order.`)
         this.setState({ alert: `Added ${drinkObj.name} to order.` })
     }
 
     render() {
-
         let sortedData = sortByCategory(this.props.drinkMenu)
-        console.log(this.props.DrinkMenu)
 
         let searchedDrink = this.props.drinkMenu.filter((drink, i) => {
             return (
@@ -46,7 +45,6 @@ class DrinkMenu extends Component {
             return (
                 <div key={drink.id} className="drink-menu">
                     <Drinks key={drink.id} drink={drink} addToCart={this.addToCart} />
-
                 </div>
             )
         })

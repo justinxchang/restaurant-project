@@ -4,7 +4,7 @@ import Food from './Food'
 import axios from 'axios';
 import { updateFoodMenu, updateUser } from '../ducks/reducer'
 import { Grid, Row, Tabs, Tab } from 'react-bootstrap'
-import './Food.css'
+// import './Food.css'
 import { sortByCategory } from './sorter';
 import SweetAlert from 'react-bootstrap-sweetalert'
 
@@ -28,6 +28,7 @@ class FoodMenu extends Component {
         let id = this.props.user.id;
         let { name, price, type } = foodObj
         let res = await axios.post('/addToCart', { name, price, type, member_id: id })
+        console.log(res)
         console.log(`Added ${foodObj.name} to order.`)
         this.setState({ alert: `Added ${foodObj.name} to order.` })
     }

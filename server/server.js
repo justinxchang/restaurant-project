@@ -3,7 +3,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const massive = require('massive')
-const ctrl = require('./controller')
+const ctrl = require('./controllers/controller')
+const auth = require('./controllers/auth_ctrl')
+const cart = require('./controllers/cart_ctrl')
+
 
 const app = express();
 const {
@@ -31,27 +34,30 @@ app.use(session({
 }))
 app.use( express.static( `${__dirname}/../build` ) );
 
+//staff
 app.post('/createFood', ctrl.createFood)
 app.post('/createDrink', ctrl.createDrink)
 app.get('/getAllFood', ctrl.getAllFood)
 app.get('/getAllDrinks', ctrl.getAllDrinks)
-app.post('/addToCart', ctrl.addToCart)
-app.get('/getFromCart', ctrl.getFromCart)
-app.delete('/deleteFromCart/:id', ctrl.deleteFromCart)
-app.put('/editQuantity/:id', ctrl.editQuantity)
-app.get('/getTotal', ctrl.getTotal) 
-app.post('/chargeCard', ctrl.chargeCard)
 app.get('/getOrders', ctrl.getOrders)
+app.put('/ordersToCompleted/:id', ctrl.ordersToCompleted)
 app.post('/addPoints/:id', ctrl.addPoints)
 app.get('/redeemPoints/:id', ctrl.redeemPoints)
-app.put('/ordersToCompleted/:id', ctrl.ordersToCompleted)
 app.get('/getMemberHistory/:id', ctrl.getMemberHistory)
-
 app.get('/getOrderQuantities', ctrl.getOrderQuantities)
 
-app.post('/auth/signup', ctrl.signup)
-app.post('/auth/login', ctrl.login)
-app.get('/api/user-data', ctrl.userData)
-app.get('/auth/logout', ctrl.logout)
+//cart
+app.get('/getFromCart', cart.getFromCart)
+app.post('/addToCart', cart.addToCart)
+app.put('/editQuantity/:id', cart.editQuantity)
+app.delete('/deleteFromCart/:id', cart.deleteFromCart)
+app.get('/getTotal', cart.getTotal) 
+app.post('/chargeCard', cart.chargeCard)
+
+//auth
+app.post('/auth/signup', auth.signup)
+app.post('/auth/login', auth.login)
+app.get('/auth/user-data', auth.userData)
+app.get('/auth/logout', auth.logout)
 
 app.listen(SERVER_PORT, () => console.log(`Server listening on port: ${SERVER_PORT}`))   

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Grid, Row, Table } from 'react-bootstrap'
+import {Grid, Row, Table } from 'react-bootstrap'
 
 class AddForm extends Component {
 
